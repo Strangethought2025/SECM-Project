@@ -16,5 +16,7 @@ This version (v0.4 Alpha) contains:
 - Destabilization module (Z-axis)
 - Innovation bonus logic (X-bonus)
 - No final version of bifurcation or singularity modules yet
+- 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16625001.svg)](https://doi.org/10.5281/zenodo.16625001)
 
 Further updates to be published in v0.5 and beyond.
