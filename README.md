@@ -1,2 +1,3 @@
 # SECM-Project
-A self-built computational model of how societies rise, rupture, and evolve — powered by logic, not black-box assumptions.
+Add Creative Commons Attribution-NonCommercial 4.0 International License to protect non-commercial rights. Redistribution and remix allowed with attribution, but commercial use strictly prohibited.
+
