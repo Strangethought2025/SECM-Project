@@ -1,0 +1,22 @@
+graph TD
+    X[X - Productive Capacity] -->|Drives| ΔX[ΔX_bonus - Innovation Bonus]
+    ΔX -->|Positive Values| Z[Z - External Pressure]
+    Z -->|Modulates| Y[Y - Social Opportunity Cost]
+    X -->|Impacts| Y_Limit[Y_Limit - Systemic Threshold]
+    Y -->|Compared to| Y_Limit
+    
+    %% Critical feedback paths
+    Z -->|Positive Z: Reduces| Y
+    Z -->|Negative Z: Amplifies| Y
+    X -->|Growth with Negative Z: Increases| Y
+    Y_Limit -->|Drops below Y| COLLAPSE[System Collapse]
+    
+    %% Threshold dynamics
+    X -->|Improves resilience| Y_Limit
+    POP[Population] -->|Density effects| Y
+    TRUST[Institutional Trust] -->|Absorbs shocks| Z
+    
+    subgraph Key Dependencies
+        ΔX -.->|Tech/Reforms/Golden Ages| Z
+        Y_Limit -.->|Can drop independently| COLLAPSE
+    end

@@ -1,0 +1,25 @@
+flowchart TB
+    START[Initial State] --> UPDATE_X[Update X: Productive Capacity]
+    UPDATE_X --> CALC_ΔX[Calculate ΔX_bonus]
+    CALC_ΔX --> UPDATE_Z[Update Z: External Pressure]
+    
+    UPDATE_Z --> CHECK_Z{Sign of Z}
+    CHECK_Z -->|Z ≥ 0| Y_DECREASE[Y decreases/stabilizes]
+    CHECK_Z -->|Z < 0| Y_INCREASE[Y increases]
+    
+    Y_DECREASE --> UPDATE_Y[Update Y: Opportunity Cost]
+    Y_INCREASE --> UPDATE_Y
+    
+    UPDATE_Y --> UPDATE_Y_LIMIT[Update Y_Limit: Systemic Threshold]
+    UPDATE_Y_LIMIT --> CHECK_COLLAPSE{Y > Y_Limit?}
+    
+    CHECK_COLLAPSE -->|Yes| COLLAPSE_MECH[Trigger Collapse Mechanism]
+    CHECK_COLLAPSE -->|No| NEXT[Next Period]
+    
+    COLLAPSE_MECH --> SYSTEM_RESET[System Reset:
+    - Partial X retention
+    - Y friction release
+    - Stress memory clear]
+    SYSTEM_RESET --> NEXT
+    
+    NEXT --> UPDATE_X
