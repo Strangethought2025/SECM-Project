@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use SECM in your research, please cite this repository using the metadata below."
+title: "SECM: Societal Evolution Computational Model"
+authors:
+  - name: Strangethought2025
+    affiliation: "Independent Researcher, Canada"
+version: "v0.4-alpha"
+doi: 10.5281/zenodo.16625001
+date-released: 2025-07-30
+repository-code: "https://github.com/Strangethought2025/SECM-Project"
+license: "CC-BY-NC-4.0"
