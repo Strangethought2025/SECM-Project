@@ -35,9 +35,23 @@ The model incorporates:
 This repository is protected under [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/).  
 **Commercial or derivative usage requires written permission.**
 
-## 🔗 Citation
+## 📚 Citation
 
-> Feng, F. (2025). *SECM: Societal Evolution Computational Model v0.4*. Zenodo. [https://doi.org/10.5281/zenodo.16625001](https://doi.org/10.5281/zenodo.16625001)
+If you use SECM in your research, please cite it using the following BibTeX:
+
+```bibtex
+@misc{strangethought2025_secm_2025,
+  author       = {Strangethought2025},
+  title        = {{SECM: Societal Evolution Computational Model v0.4 (Alpha)}},
+  year         = {2025},
+  version      = {v0.4},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.16625001},
+  url          = {https://doi.org/10.5281/zenodo.16625001},
+  note         = {CC BY-NC 4.0 License}
+}
+
+
 
 ---
 
