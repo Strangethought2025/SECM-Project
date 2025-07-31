@@ -1,0 +1,37 @@
+# LaTeX编译过程文件
+*.aux
+*.log
+*.toc
+*.out
+*.gz
+*.fls
+*.fdb_latexmk
+*.synctex*
+*.bbl
+*.blg
+*.nav
+*.snm
+
+# 编译后的PDF
+*.pdf
+
+# 临时编辑器文件
+*~
+*.swp
+.DS_Store
+Thumbs.db
+
+# 仿真器生成的缓存或输出
+output/
+tmp/
+*.csv
+*.xlsx
+
+# VS/VB相关
+*.vbproj.user
+*.suo
+*.exe
+*.pdb
+*.obj
+
+Add .gitignore to exclude temp and build files
