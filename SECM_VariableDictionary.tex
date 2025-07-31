@@ -1,0 +1,145 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{newunicodechar}
+\newunicodechar{Δ}{\Delta}
+\geometry{margin=1in}
+\begin{document}
+\section*{SECM Model Variable Dictionary (Full Table)}
+
+\begin{longtable}{|p{2.8cm}|p{4.3cm}|p{2.0cm}|p{3.0cm}|p{3.0cm}|}
+\hline
+\textbf{Symbol / Name} & \textbf{Definition / Description} & \textbf{Units / Normalization} & \textbf{Real-World Proxy / Calculation} & \textbf{Main Data Source / Note} \\
+\hline
+\endfirsthead
+
+$X_t$ & Aggregate productive capacity at time $t$ & Index, normalized or PPP & Real GDP (excluding finance/real estate), industrial output & World Bank, OECD, Maddison, Seshat \\
+% \hline (moved out of tabular)
+$Y_t$ & Social opportunity cost & Dimensionless, normalized & Gini, mobility cost, stratification indices & World Bank, OECD, LIS, national stats \\
+% \hline (moved out of tabular)
+$Z_t$ & Destabilization index (systemic risk/shock) & Index, normalized & War\slash pandemic\slash disaster\slash financial crisis index & EM-DAT, UCDP, GDELT, IMF, WTO \\
+% \hline (moved out of tabular)
+$\Delta X_{\text{bonus}}(t)$ & Raw innovation bonus & Index, \%$\Delta$X per year & Patent bursts, breakthrough events, sectoral R\&D surge & USPTO, Seshat, Nature Index \\
+% \hline (moved out of tabular)
+$\Delta X_{\text{bonus}}^{\text{eff}}(t)$ & Education-absorbed effective innovation bonus & Index, \%$\Delta X$ per year & $\Delta X_{\text{bonus}} \times$ education/STEM/PISA filter & WIPO, OECD, UNESCO, PISA \\
+% \hline (moved out of tabular)
+$\Phi_{\text{edu}}(t)$ & Education innovation absorption filter & [0,1], dimensionless & Sigmoid(PISA\_math $-$ PISA\_threshold) $\times$ STEM filter & OECD, UNESCO \\
+% \hline (moved out of tabular)
+$\text{PopDens}_t$ & Population density at time $t$ & Persons/km$^2$ & $N_t / \text{HabitableArea}_t$ & WorldPop, HYDE 3.2 \\
+% \hline (moved out of tabular)
+$D_{\text{opt}}$ & Productivity-optimal density & Persons/km$^2$ & Calibrated regional optimum (default $\approx$ 150/km$^2$) & Empirical regression \\
+% \hline (moved out of tabular)
+$\lambda_d$ & Productivity density bonus coefficient & Dimensionless & Patent-GDP density regression & World Bank, USPTO/EPO \\
+% \hline (moved out of tabular)
+$\lambda_r(t)$ & Density penalty coefficient & Dimensionless, dynamic & See main formula: commute/infrastructure & OSM, Google Mobility, WorldPop \\
+% \hline (moved out of tabular)
+$\eta_t$ & Productivity friction sensitivity & Dimensionless & High-risk investment, M2/GDP, regression & IMF, central banks \\
+% \hline (moved out of tabular)
+$\Delta X_{\text{diff}}(t)$ & International knowledge/tech diffusion increment & $\%\Delta X$ per year & See formula (distance, trade, patent diff) & OECD, patent, education datasets \\
+% \hline (moved out of tabular)
+$\Delta X_{\text{trade}}(t)$ & Trade/integration/resource gain increment & \%$\Delta X$ per year & Net trade gain, FDI, value chain upgrades & UN Comtrade, UNCTAD \\
+% \hline (moved out of tabular)
+$\Delta X_Z(t)$ & Direct external shock impact on productivity & $\%\Delta X$ per year & Disaster, war, aid, regime effect & SIPRI, EM-DAT, disaster databases \\
+% \hline (moved out of tabular)
+PISA\_math & National PISA math score (standardized, mean $\approx$ 500) & Score & OECD PISA & OECD \\
+% \hline (moved out of tabular)
+PISA\_threshold & PISA math proficiency baseline (passing threshold) & Score & OECD passing cutoff & OECD \\
+% \hline (moved out of tabular)
+$N_t$ & Population at time $t$ & Persons, normalized & Census or UN estimate & UN, national census \\
+% \hline (moved out of tabular)
+$N_{t,\text{STEM}}$ & STEM researcher count & Persons & OECD, UNESCO STEM stats & OECD, UNESCO \\
+% \hline (moved out of tabular)
+$N_{\text{crit}}$ & Critical STEM scale for innovation absorption & Persons & Empirical inflection value & OECD calibration \\
+% \hline (moved out of tabular)
+$\text{TER}_t$ & Tertiary education enrollment rate at $t$ & [0,1] & \% of population enrolled in tertiary education & UNESCO, World Bank \\
+% \hline (moved out of tabular)
+TER\_ref & Reference tertiary enrollment rate (benchmark) & [0,1] & OECD reference & Model calibration \\
+% \hline (moved out of tabular)
+$N_t^{\text{edu}}$ & Tertiary-educated population at time $t$ & Persons & $N_t \times \text{TER}_t \times (1 - \beta_y \cdot Y_t)$ & UNESCO, national stats \\
+% \hline (moved out of tabular)
+$\beta_y$ & $Y$ impact on education attainment & Dimensionless & Opportunity cost effect on education & Model calibration \\
+% \hline (moved out of tabular)
+HabitableArea\_t & Habitable land area at $t$ & km$^2$ & Excludes deserts, glaciers, etc. & HYDE 3.2, NASA SEDAC \\
+% \hline (moved out of tabular)
+Area\_ref & Reference area for land buffer & km$^2$ & Typically 1,000,000 km$^2$ & Calibration \\
+% \hline (moved out of tabular)
+$\sigma$ & Base innovation friction relief & Dimensionless & Empirical estimate & Historical panel, regression \\
+% \hline (moved out of tabular)
+$\sigma^{\text{new}}$ & Education/trust-filtered friction relief & Dimensionless & See new formula & Model output \\
+% \hline (moved out of tabular)
+$\eta_e$ & Education-innovation synergy coefficient & Dimensionless & Mobility/innovation regression & Model calibration \\
+% \hline (moved out of tabular)
+$\alpha$ & Scaling elasticity (innovation, $Z$ effect) & Dimensionless & Tech diffusion literature & Literature, empirical fit \\
+% \hline (moved out of tabular)
+$\gamma$ & Innovation relief scaling & Dimensionless & Empirical fit & Model fit \\
+% \hline (moved out of tabular)
+$\kappa_d(t)$ & Density-friction amplifier & Dimensionless & $d(\text{Gini})/d\ln(\text{PopDens}) \times$ trust adjustment & Model output, Gini stats \\
+% \hline (moved out of tabular)
+$D_t$ & Normalized population density & Dimensionless & PopDens$_t$ / 100 & Derived variable \\
+% \hline (moved out of tabular)
+$\rho_t$ & Baseline friction growth rate & Dimensionless & Gini growth, mobility decline & Gini, mobility stats \\
+% \hline (moved out of tabular)
+$\rho_t^{\text{new}}$ & Upgraded density/education modulated friction rate & Dimensionless & See formula & Model output \\
+% \hline (moved out of tabular)
+$\varepsilon_0^{\text{buff}}$ & Land buffer term & Dimensionless & $-\beta_a \cdot (\text{HabitableArea}_t / \text{Area}_\text{ref})$ & Model output \\
+% \hline (moved out of tabular)
+$\beta_a$ & Land buffer elasticity & Dimensionless & Civil war frequency–area regression & Empirical fit, Seshat \\
+% \hline (moved out of tabular)
+$U_t$ & Tech/structural unemployment rate & [0,1] & Innovation/sectoral displacement share & OECD, WB, labor stats \\
+% \hline (moved out of tabular)
+$\Psi_t$ & Psycho-social integration/trust index & [0,1] & Survey trust, social capital & WVS, Gallup, Seshat \\
+% \hline (moved out of tabular)
+$\beta_t$ & Trust shock sensitivity parameter & Dimensionless & $\beta_0 \cdot (1 - \text{ClearanceRate}_t)^\gamma$; unrest/protest rates & FBI, Eurostat, V-Dem, GDELT \\
+% \hline (moved out of tabular)
+$\eta_t$ & Trust recovery elasticity & Dimensionless & $\Delta \text{Trust}_t \sim \Delta X_t / X_t$ regression & WVS, Gallup, IMF \\
+% \hline (moved out of tabular)
+$\omega_{1,t}$ & Innovation-aligned trust weight & [0,1] & $(P_{\text{break},t} / P_{\text{total},t}) \cdot (A_{\text{break},t} / A_{\text{total},t})$ & Nature Index, Clarivate, USPTO/EPO \\
+% \hline (moved out of tabular)
+Trust$_t$ & Institutional trust & [0,1] & Survey, regime longevity, legal compliance & WVS, Gallup \\
+% \hline (moved out of tabular)
+SocialCapital$_t$ & Civic/interpersonal trust & [0,1] & Association density, volunteerism, contract rate & WVS, legal/association records \\
+% \hline (moved out of tabular)
+$\Gamma(\Psi_t)$ & Trust scaling function & [0,1] & Fitted monotonic map of $\Psi_t$ & Model output \\
+% \hline (moved out of tabular)
+$Z_{\text{ext}}(t)$ & Raw exogenous shock signal & Index, normalized & Event-specific formulas & SIPRI, UNDRR, WHO, Comtrade, SWIFT \\
+% \hline (moved out of tabular)
+$\nu_t$ & Low trust penalty coefficient & Dimensionless & Regression on trust collapse impact & V-Dem, GDELT, WVS/Gallup \\
+% \hline (moved out of tabular)
+$\phi_{\text{dens}}$ & Density shock coefficient & Dimensionless & Elasticity of urban unrest to density & OECD, WDI, urban unrest data \\
+% \hline (moved out of tabular)
+$\phi_{\text{edu}}$ & Education filter penalty coefficient & Dimensionless & Education-shock elasticity fit & UNESCO, OECD, PISA \\
+% \hline (moved out of tabular)
+$f(\text{TER}_t, \text{STEM}_t, \text{PISA}_\text{math})$ & Education shock filter function & [0,1] & See formula & Model output \\
+% \hline (moved out of tabular)
+TFP & Total factor productivity & \% per annum, normalized & Penn World Table & TFP growth rate, efficiency \\
+% \hline (moved out of tabular)
+High-Tech Exports & High-tech exports as share of total exports & [0,1] or \% & National trade data & UNCTAD, OECD \\
+% \hline (moved out of tabular)
+$\text{Inst}_t$ & Institutional resilience index & [0,1] & Governance effectiveness, rule of law & World Bank, WGI \\
+% \hline (moved out of tabular)
+$\text{Hist}_t$ & Historical inertia & Years or normalized & Years since last rupture/regime change & Seshat, Penn AWED \\
+% \hline (moved out of tabular)
+$K$ & Demographic scaling parameter & Persons & Calibration & Model parameter \\
+% \hline (moved out of tabular)
+$\text{TLI}_t$ & Technology Level Index (patents, R\&D/GDP, TFP index) & [0,1] & Patents per capita, R\&D/GDP, TFP index & OECD, WIPO, USPTO/EPO \\
+% \hline (moved out of tabular)
+$S_t$ & Cumulative stress memory & Dimensionless, model output & $\sum_{\tau=t_0}^t \max(0, Y_\tau - Y\text{-}Limit_\tau)$ & Model internal variable \\
+% \hline (moved out of tabular)
+$\beta_0, \gamma, \kappa, \xi, \theta_0, \delta_c$ & Core/secondary model coefficients & Dimensionless & Fitted per model calibration & Model fit \\
+% \hline (moved out of tabular)
+SEI$(t)$ & Socialization Efficiency of Innovation Dividend & [0,1] & Weighted sum: $S_\text{civil}, S_{\text{mil}\rightarrow\text{civil}}, S_\text{bubble}^{-1}, S_\text{equity}$ & OECD, patent data, startup indices \\
+% \hline (moved out of tabular)
+$T_t$ & Trade Stress Index & [0,1] or ratio & Seaborne Tonnage / Total Trade Volume & World Bank, UNCTAD, ship registers \\
+% \hline (moved out of tabular)
+$Y_{\text{eff},t}$ & Effective Social Opportunity Cost & Dimensionless & $Y_{\text{base}} + c_1 \cdot Q_{\text{gap},t} + c_2 \cdot \max(0,1 - \text{Adeq}_t)$ & National stats, OECD \\
+% \hline (moved out of tabular)
+$Q_{\text{gap},t}$ & Quality-of-life Gap & Income or normalized & Median wage – living cost & OECD, World Bank \\
+% \hline (moved out of tabular)
+Adeq$_t$ & Resource Adequacy & [0,1] & Population share with essential access & Poverty/coverage data \\
+% \hline (moved out of tabular)
+CriticalShock & Bifurcation/rupture threshold & Dimensionless & Scenario parameter & Sensitivity/robustness scenario \\
+% \hline (moved out of tabular)
+\end{longtable}
+\end{document}
