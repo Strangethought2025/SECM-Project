@@ -35,6 +35,8 @@ The model incorporates:
 This repository is protected under [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/).  
 **Commercial or derivative usage requires written permission.**
 
+**"Society is the greatest university — and SECM is my lecture note."**
+
 ## 📚 Citation
 
 If you use SECM in your research, please cite it using the following BibTeX:
@@ -57,5 +59,3 @@ If you use SECM in your research, please cite it using the following BibTeX:
 
 **To run simulations or contribute code, please refer to the `simulator/` folder (coming soon).**
 
-
-**Society is the greatest university — and SECM is my lecture note.**
