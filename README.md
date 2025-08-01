@@ -56,3 +56,6 @@ If you use SECM in your research, please cite it using the following BibTeX:
 ---
 
 **To run simulations or contribute code, please refer to the `simulator/` folder (coming soon).**
+
+
+**Society is the greatest university — and SECM is my lecture note.**
