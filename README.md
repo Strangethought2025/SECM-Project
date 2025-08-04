@@ -1,5 +1,5 @@
 # SECM: Societal Evolution Computational Model
-This repository contains the early conceptual and structural draft of the Societal Evolution Computational Model (SECM), first proposed and authored by Feng Frank in July 2025.  
+This repository contains the early conceptual and structural draft of the Societal Evolution Computational Model (SECM), first proposed and authored by Xiaofei Feng in July 2025.  
 All documents, formulas, diagrams, and prototype codes herein are original work, published publicly on GitHub on July 31st, 2025.  
 Any use of this model, structure, or concepts should cite this repository or the upcoming formal release of SECM v0.5.
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16625001.svg)](https://doi.org/10.5281/zenodo.16625001)
