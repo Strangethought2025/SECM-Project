@@ -1,52 +1,77 @@
 # SECM: Societal Evolution Computational Model
-This repository contains the early conceptual and structural draft of the Societal Evolution Computational Model (SECM), first proposed and authored by Xiaofei Feng in July 2025.  
-All documents, formulas, diagrams, and prototype codes herein are original work, published publicly on GitHub on July 31st, 2025.  
-Any use of this model, structure, or concepts should cite this repository or the upcoming formal release of SECM v0.5.
+
+This repository contains the **original draft and implementation prototype** of the *Societal Evolution Computational Model (SECM)* — a structural simulation framework first authored and released by **Xiaofei Feng** in July 2025.
+
+All concepts, formulas, diagrams, and code structures included in this repository were publicly published on GitHub on **July 31st, 2025** and registered on [Zenodo](https://doi.org/10.5281/zenodo.16625001).
+
+> **“Society runs on frictions, not ideals. SECM just makes them measurable.”**
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16625001.svg)](https://doi.org/10.5281/zenodo.16625001)
 ![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-blue)
-![Version](https://img.shields.io/badge/version-v0.4-green)
+![Version](https://img.shields.io/badge/version-v0.4-alpha-orange)
 
-> “A civilization must run just to stay in place.”
+---
 
-This repository hosts the official model files, documentation, and simulation logic for **SECM (Societal Evolution Computational Model)**, a modular framework for analyzing macro-societal development under structural feedback constraints.
+## 📘 What is SECM?
 
-## 📘 Overview
+SECM is a **three-axis computational model** designed to simulate macro-societal evolution under structural constraints and feedback loops. It does *not* attempt to model individuals, nor does it rely on traditional economic equilibrium theory.
 
-SECM simulates the interaction between three primary axes:
+Instead, it captures **systemic friction and instability** using dynamic social pressure models inspired by thermodynamics, class tension theory, and collapse mechanics.
 
-- **X-axis**: Productive capacity (e.g. GDP, infrastructure)
-- **Y-axis**: Social mobility cost and systemic friction (e.g. inequality)
-- **Z-axis**: External disruptions (e.g. war, pandemics, trade shocks)
+### 🔺 The Three Axes of SECM
 
-The model incorporates:
+- **X-axis**: *Structural productive capacity* (e.g. energy-equivalent output, infrastructure)
+- **Y-axis**: *Social opportunity cost* (e.g. inequality, class mobility barrier, economic friction)
+- **Z-axis**: *Systemic pressure & external shocks* (e.g. war, fatigue, policy compression, trust collapse)
 
-- A Red Queen mechanism on the Y-axis
-- Dynamic collapse thresholds based on societal stress
-- Tech bonus pools and innovation saturation
-- Multi-stage simulation support
+Together, these simulate:
+- Red Queen dynamics on Y (running faster just to stay in place)
+- Collapse thresholds modulated by Gini coefficients and savings rates
+- Innovation bonus pools with saturation and decay
+- A recursive social stress engine (Z-axis fatigue + shock + relief)
 
-## 📂 Contents
+---
 
-- `SECM_V0.4_Final.tex`: LaTeX manuscript of the model
-- `SECM V0.4 Alpha.pdf`: Preprint version hosted on Zenodo
-- `LICENSE`: CC BY-NC 4.0 terms
-- `docs/`: Visualizations, FAQs, and demos (coming soon)
+## 📂 Repository Contents
+
+- `SECM_V0.4_Final.tex` – Full LaTeX manuscript of the v0.4 Alpha model  
+- `SECM V0.4 Alpha.pdf` – Preprint hosted on Zenodo  
+- `LICENSE` – Creative Commons Attribution-NonCommercial 4.0  
+- `docs/` – Visual diagrams, FAQs, demos (coming soon)  
+- `simulator/` – Simulation engine (work in progress, VB & Python versions planned)
+
+---
+
+## 🧠 Intellectual Property Notice
+
+> **The “Three-Axis Structural Model” (X-Y-Z System) and its feedback framework are original work by Xiaofei Feng**, publicly released via Zenodo and GitHub on July 31st, 2025.  
+Any derivative models, commercial usage, or academic replications **must cite** this repository or the forthcoming **SECM v0.5 formal release.**
+
+A copy of the DOI-backed publication is permanently available at:  
+📎 [https://doi.org/10.5281/zenodo.16625001](https://doi.org/10.5281/zenodo.16625001)
+
+---
 
 ## 🔒 License
 
-This repository is protected under [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/).  
-**Commercial or derivative usage requires written permission.**
+This work is licensed under [**CC BY-NC 4.0**](https://creativecommons.org/licenses/by-nc/4.0/).  
+That means:
+- ✅ You may remix/share/use it for non-commercial academic work  
+- ❌ You may **not** use it for commercial purposes without explicit permission  
+- 📚 You **must** attribute the original author in all derivative or adapted works  
 
-**"Society is the greatest university — and SECM is my lecture note."**
+> “Society is the greatest university — and SECM is my lecture note.”
+
+---
 
 ## 📚 Citation
 
-If you use SECM in your research, please cite it using the following BibTeX:
+If you use SECM in your research or publication, please cite it as:
 
 ```bibtex
 @misc{strangethought2025_secm_2025,
   author       = {Strangethought2025},
-  title        = {{SECM: Societal Evolution Computational Model v0.4 (Alpha)}},
+  title        = {SECM: Societal Evolution Computational Model v0.4 (Alpha)},
   year         = {2025},
   version      = {v0.4},
   publisher    = {Zenodo},
@@ -54,10 +79,3 @@ If you use SECM in your research, please cite it using the following BibTeX:
   url          = {https://doi.org/10.5281/zenodo.16625001},
   note         = {CC BY-NC 4.0 License}
 }
-
-
-
----
-
-**To run simulations or contribute code, please refer to the `simulator/` folder (coming soon).**
-
