@@ -59,3 +59,6 @@ If you use SECM in your research, please cite it using the following BibTeX:
 
 **To run simulations or contribute code, please refer to the `simulator/` folder (coming soon).**
 
+This repository contains the early conceptual and structural draft of the Societal Evolution Computational Model (SECM), first proposed and authored by Feng Frank in July 2025.  
+All documents, formulas, diagrams, and prototype codes herein are original work, published publicly on GitHub on July 31st, 2025.  
+Any use of this model, structure, or concepts should cite this repository or the upcoming formal release of SECM v0.5.
