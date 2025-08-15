@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>SECM运行实体</id>
+    <version>1.0.0</version>
+    <authors>SECM运行实体</authors>
+    <description>Package Description</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net8.0-windows8.0">
+        <dependency id="NPOI" version="2.7.4" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net8.0-windows8.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="D:\Frank\Desktop\模型数据库\SECM\SECM运行实体\bin\Release\net8.0-windows8.0\SECM运行实体.runtimeconfig.json" target="lib\net8.0-windows8.0\SECM运行实体.runtimeconfig.json" />
+    <file src="D:\Frank\Desktop\模型数据库\SECM\SECM运行实体\bin\Release\net8.0-windows8.0\SECM运行实体.dll" target="lib\net8.0-windows8.0\SECM运行实体.dll" />
+  </files>
+</package>
