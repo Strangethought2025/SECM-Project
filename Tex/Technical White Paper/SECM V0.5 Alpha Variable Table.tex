@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{geometry}
+\geometry{a4paper, margin=2cm}
+
+\begin{document}
+\section{Variable Definitions and Parameters}
+
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+
+\begin{longtable}{p{3cm} p{8cm} p{3cm}}
+\hline
+\textbf{Variable} & \textbf{Description} & \textbf{Unit / Scale} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Variable} & \textbf{Description} & \textbf{Unit / Scale} \\
+\hline
+\endhead
+
+\multicolumn{3}{l}{\textbf{Core Capacity Metrics}} \\
+$X_{\mathrm{real}}$ & Actual productive capacity, calculated from total primary energy, animal power, and KWPE. & million kWh \\
+$X_{\mathrm{norm}}$ & Normalized productive capacity, relative to baseline $X_{\mathrm{real},0}$. & Dimensionless \\
+KWPE & KW Productivity Equivalent, human labor converted to energy-equivalent productivity. & million kWh \\
+PrimaryEnergy & Total primary energy supply. & million kWh \\
+AnimalPower & Energy from animal labor. & million kWh \\
+Population & Total population. & persons \\
+PopulationLast & Population in the previous period (used for growth/pressure calculations). & persons \\
+XBase & Baseline productive capacity (initial $X_{\mathrm{real}}$). & million kWh \\
+
+\multicolumn{3}{l}{\textbf{Innovation Metrics}} \\
+$X_{\mathrm{bonus}}$ & Innovation dividend from STEM share, education rate, TFP growth, and patent density. & Dimensionless \\
+$X_{\mathrm{bonus,norm}}$ & Normalized innovation dividend. & Dimensionless \\
+$\theta$ & Scaling factor for innovation dividend. & Dimensionless \\
+$P$ & Productivity elasticity parameter in innovation dividend formula. & Dimensionless \\
+STEMshare & Share of STEM workforce in total labor force. & \% of labor force \\
+EduRate & Education attainment rate. & \% of population \\
+TFP & Total factor productivity index. & Dimensionless \\
+PatentDensity & Patents per million people. & patents/million people \\
+PatentCount & Total number of patents. & patents \\
+PatentDensity$_{t-1}$ & Patent density in previous period. & patents/million people \\
+$X_{\mathrm{real},t-1}$ & Productive capacity in previous period. & million kWh \\
+
+\multicolumn{3}{l}{\textbf{Social Structure Metrics}} \\
+$Z_c$ & Social complexity index, aggregated from inequality, crime, poverty, market concentration, trust, and urbanization. & Dimensionless \\
+Gini & Gini coefficient for income/wealth inequality. & 0--1 \\
+$S_{\mathrm{murder}}$ & Homicide rate component of $Z_c$. & Dimensionless \\
+MurderRate & Annual homicide rate. & \% per year \\
+$S_{\mathrm{poverty}}$ & Poverty rate component of $Z_c$. & Dimensionless \\
+PovertyRate & Population living below the poverty line. & \% of population \\
+MCapGDP & Market capitalization to GDP ratio. & Dimensionless \\
+Trust & Social trust index. & 0--1 \\
+Urbanization & Urban population share. & \% of population \\
+$n$ & Number of components in $Z_c$ aggregation. & integer \\
+
+\multicolumn{3}{l}{\textbf{System Vulnerability Metrics}} \\
+$\Omega$ & Structural resilience index of the society. & Dimensionless \\
+SavingsRate & Household savings rate. & \% of disposable income \\
+DebtRate & Household debt ratio to GDP. & \% of GDP \\
+UnemploymentRate & Unemployment rate. & \% of labor force \\
+LPI & Logistics performance index. & 0--5 \\
+OmegaShock & External shock to $\Omega$. Positive for harmful, negative for beneficial. & Dimensionless \\
+
+\multicolumn{3}{l}{\textbf{Net Tension Driver}} \\
+$Z_{\mathrm{eff}}$ & Effective social tension driver, combining $Z_c$, relaxation, innovation bonus, shocks, and drift. & Dimensionless \\
+relax & Social relaxation factor (e.g., welfare, culture) reducing tension. & Dimensionless \\
+ZShock & External social destabilization shock. Positive for harmful, negative for beneficial. & Dimensionless \\
+DriftTerm & Long-term drift in $Z_{\mathrm{eff}}$ (Red Queen effect). & Dimensionless \\
+$\Gamma_S$ & Sensitivity coefficient for $Z_c$ contribution to $Z_{\mathrm{eff}}$. & Dimensionless \\
+$\Gamma_X$ & Sensitivity coefficient for $X_{\mathrm{bonus}}$ contribution to $Z_{\mathrm{eff}}$. & Dimensionless \\
+
+\multicolumn{3}{l}{\textbf{Societal Stress and Capacity}} \\
+$Y$ & Societal stress index (composite measure of internal social cost). & Dimensionless \\
+$Y_{\mathrm{base}}$ & Baseline $Y$ value derived from initial parameters. & Dimensionless \\
+$\Delta Y$ & Change in $Y$ during the current period. & Dimensionless \\
+$K_Y$ & Scaling coefficient linking $X$ to $Y$ growth. & Dimensionless \\
+PopPressure & Population pressure term based on arable land and population growth. & Dimensionless \\
+ArableLandCapita & Arable land per capita. & hectares/person \\
+ArableLandTotal & Total arable land. & hectares \\
+LandCapLimitCoef & Coefficient for land capacity limit in population pressure. & Dimensionless \\
+
+\multicolumn{3}{l}{\textbf{Carrying Capacity}} \\
+$Y_{\mathrm{limit}}$ & Societal carrying capacity index. & Dimensionless \\
+$k_{\mathrm{limit}}$ & Scaling factor in $Y_{\mathrm{limit}}$ calculation. & Dimensionless \\
+MilitaryRatio & Military expenditure as share of GDP. & \% of GDP \\
+$\beta$ & Decay factor for $Y_{\mathrm{limit}}$ when $\Delta X < 0$. & Dimensionless \\
+
+\multicolumn{3}{l}{\textbf{Overload Dynamics}} \\
+$S_t$ & Crisis pool (accumulated overload beyond $Y_{\mathrm{limit}}$). & Dimensionless \\
+$S_{t-1}$ & Crisis pool in the previous period. & Dimensionless \\
+$\lambda_S$ & Decay rate of crisis pool when $Y < Y_{\mathrm{limit}}$. & Dimensionless \\
+$K_S$ & Scaling factor for accumulation rate of $S_t$. & Dimensionless \\
+$S_0$ & Initial value of crisis pool. & Dimensionless \\
+
+\multicolumn{3}{l}{\textbf{Resilience Reset}} \\
+$I_{\mathrm{reset}}$ & Resilience reset function based on $Y$, $Y_{\mathrm{limit}}$, and $S_t$. & Dimensionless \\
+$\phi(\cdot)$ & Functional form of the resilience reset mechanism. & Dimensionless \\
+
+\multicolumn{3}{l}{\textbf{External and Initial Conditions}} \\
+$Y_{\mathrm{first}}$ & Initial $Y$ value for the first simulation step (overrides $Y_{\mathrm{base}}$). & Dimensionless \\
+Year & Simulation year for the current data row. & integer \\
+
+\end{longtable}
+\end{document}

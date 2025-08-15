@@ -1,0 +1,340 @@
+\documentclass[12pt,a4paper]{article}
+
+% ===== Packages =====
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{longtable}
+\usepackage{natbib}
+\usepackage{titlesec}
+\usepackage{hanging}
+
+% ===== Formatting =====
+\setstretch{1.2}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+% ===== Title Page =====
+\title{\textbf{Societal Evolution Computational Model (SECM) V0.5 ALPHA} \\
+\large Technical White Paper}
+\author{Xiaofei Feng \\ Independent Researcher \\
+\texttt{strangethought2025@gmail.com}}
+\date{\today}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+% ===== Abstract =====
+\begin{abstract}
+The Societal Evolution Computational Model (SECM) V0.5 ALPHA is an original, modular computational framework designed to analyze the evolution of societal stress, carrying capacity, and systemic resilience over time. While the model draws on established energy equivalence concepts for its KW Productivity Equivalent (KWPE) metric, all other components---including the mathematical structure, integration logic, and module interactions---are original contributions by the author.
+
+The model is not a predictive “crystal ball,” but rather an exploratory tool for identifying generalized patterns in the co-evolution of societal productivity, complexity, and stability. SECM is inherently time-agnostic: its stepwise calculations are driven exclusively by changes in productive capacity (\(X\)), and the temporal resolution of results is determined solely by the input data’s interval (e.g., annual, decadal). This feature allows the model to operate across diverse historical and contemporary datasets, provided intervals remain consistent.
+
+By incorporating representative and accessible variables, SECM enables reproducibility while allowing users to substitute better proxies when available. Historical data gaps and pre-statistical proxies must be supplied by the user, as the author does not provide archaeological or historical dataset recommendations. The present paper focuses on the computational workflow and mathematical formulation; methodology and validation details are provided in separate documents.
+
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+\section{Introduction}
+
+The Societal Evolution Computational Model (SECM) V0.5 ALPHA is an original, modular computational framework designed to explore the generalized dynamics of societal stress, carrying capacity, and systemic resilience. While many prior models address economic growth, environmental limits, or social change individually, SECM integrates these domains into a unified structure that is both data-driven and adaptable across contexts.
+
+The model’s core purpose is \textbf{exploratory}, not predictive. SECM is intended to serve as an analytical framework for investigating how productive capacity, social complexity, and systemic vulnerability interact over extended periods. The model is suitable for historical analysis, counterfactual scenarios, and forward-looking stress testing---provided the user understands that the outputs represent structured computations of relationships between variables, not deterministic forecasts of future events.
+
+SECM’s architecture is composed of distinct computational modules linked through well-defined data flows. These include modules for calculating productive capacity (\(X\)), innovation dividends, social complexity, systemic vulnerability (\(\Omega\)), net tension drivers (\(Z_{\mathrm{eff}}\)), societal stress index (\(Y\)), carrying capacity (\(Y_{\mathrm{limit}}\)), and overload dynamics (Crisis Pool \(S_t\) and Resilience Reset \(I_{\mathrm{reset}}\)).
+
+An important structural feature of SECM V0.5 ALPHA is its \textbf{time-agnostic nature}. The model does not contain an inherent time variable. Instead, it operates in discrete steps driven exclusively by changes in productive capacity (\(X\)), and the temporal resolution of the simulation is determined entirely by the interval of the input data. For example, annual data produces annual steps, while decadal data produces decadal steps. This design allows the model to be applied to both modern statistical series and reconstructed historical datasets of varying temporal granularity.
+
+In the present paper, the focus is on computational design and mathematical formulation. Data collection methodology, parameter estimation procedures, and validation results are documented separately in dedicated methodology and verification manuscripts.
+\section{Model Philosophy and Variable Design Principles}
+
+\subsection{Philosophical Basis}
+SECM V0.5 ALPHA is built upon the premise that the evolution of human societies can be analyzed through quantifiable interactions between productive capacity, social complexity, systemic vulnerability, and carrying capacity. Unlike traditional forecasting models, SECM does not attempt to predict specific events or dates. Instead, it serves as a \textbf{conceptual and computational laboratory} for testing how changes in one domain may propagate to others under varying structural conditions.
+
+This philosophical orientation ensures that SECM remains relevant across different temporal and geographic contexts. By abstracting away from rigid time dependencies, the model captures the structural logic of societal evolution rather than binding itself to historical timelines.
+
+\subsection{Non-Predictive Nature and Scope Limitations}
+The model is \textbf{not a “crystal ball”} for foretelling the future. Its outputs are best interpreted as structured indicators of stress and capacity dynamics, contingent upon the chosen input variables and parameters. The framework can highlight potential tipping points or capacity thresholds, but the actual timing, form, and consequences of such transitions are beyond its predictive remit.
+
+Furthermore, the model does not address normative judgments about societal stability, desirability of certain outcomes, or prescriptive interventions. Such analyses must be conducted separately, integrating SECM’s outputs with qualitative assessments and domain-specific expertise.
+
+\subsection{Variable Selection Rationale}
+Input variables in SECM are chosen for three primary reasons:
+\begin{enumerate}
+    \item \textbf{Representativeness}: Each variable corresponds to a structural component of societal functioning (e.g., economic productivity, demographic pressure, institutional trust).
+    \item \textbf{Accessibility}: Variables are drawn from widely available datasets, such as the World Bank, OECD, and World Values Survey.
+    \item \textbf{Substitutability}: The model allows users to replace default variables with alternative proxies better suited to their specific research contexts.
+\end{enumerate}
+
+Historical or pre-statistical periods may require the use of proxy indicators (e.g., archaeological yield estimates for agricultural productivity). The identification, validation, and integration of such proxies are the responsibility of the user. The author does not provide archaeological or historical datasets, as this falls outside the model’s intended scope and the author’s expertise.
+
+\subsection{Development Status}
+SECM V0.5 ALPHA remains under active development and iteration. While the current structure and formulae have undergone extensive internal testing and validation against multiple historical cases, the model is expected to evolve as additional data sources, theoretical insights, and computational techniques become available.
+\section{Computational Architecture}
+
+\subsection{Overview}
+The SECM V0.5 ALPHA framework is organized as a sequence of interconnected computational modules, each responsible for transforming specific categories of input data into intermediate or final indicators. This modular design improves transparency, facilitates troubleshooting, and allows targeted substitution or refinement of individual components without altering the entire system.
+
+The architecture is divided into:
+\begin{itemize}
+    \item \textbf{Input Mapping Modules} – Standardizes and normalizes raw data into model-compatible formats.
+    \item \textbf{Core Computational Modules} – Processes the normalized inputs into key intermediate indicators (\(X\), \(X_{\text{bonus}}\), \(Z_c\), \(\Omega\), \(Z_{\mathrm{eff}}\)).
+    \item \textbf{Output Modules} – Calculates final societal stress and capacity metrics (\(Y\), \(Y_{\mathrm{limit}}\), \(S_t\), \(I_{\mathrm{reset}}\)) and produces results for analysis.
+\end{itemize}
+
+\subsection{Logical Structure}
+Figure~\ref{fig:structure} presents the logical structure of SECM V0.5 ALPHA in compact form. Each module is represented as a functional block, with arrows denoting the direction of data flow.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{secm_structure.png}
+    \caption{Logical Structure of SECM V0.5 ALPHA (Compact Representation)}
+    \label{fig:structure}
+\end{figure}
+
+\subsection{Key Modules}
+\begin{enumerate}
+    \item \textbf{Productive Capacity Module (\(X\))} – Computes actual and normalized productivity from energy and labor-equivalent metrics.
+    \item \textbf{Innovation Dividend Module (\(X_{\text{bonus}}\))} – Captures gains from STEM workforce share, education rate, TFP growth, and patent density.
+    \item \textbf{Social Complexity Module (\(Z_c\))} – Aggregates inequality, social trust, demographic stress, and governance indicators.
+    \item \textbf{System Vulnerability Module (\(\Omega\))} – Integrates financial and structural risk indicators into a composite vulnerability measure.
+    \item \textbf{Net Tension Driver Module (\(Z_{\mathrm{eff}}\))} – Combines social complexity, innovation, and exogenous shocks into an effective societal tension factor.
+    \item \textbf{Societal Stress Index Module (\(Y\))} – Calculates total societal stress as a function of productive capacity, net tension, and other modifiers.
+    \item \textbf{Carrying Capacity Module (\(Y_{\mathrm{limit}}\))} – Estimates maximum sustainable stress before systemic instability is likely.
+    \item \textbf{Crisis Pool Module (\(S_t\))} – Tracks cumulative societal overload beyond capacity.
+    \item \textbf{Resilience Reset Module (\(I_{\mathrm{reset}}\))} – Represents periodic reductions in overload due to societal adaptation or restructuring.
+\end{enumerate}
+
+\subsection{Execution Flow Diagram}
+The execution flow is presented in Figure~\ref{fig:flowchart}, showing the order in which data moves through the system during a single simulation run.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{secm_flowchart.png}
+    \caption{Execution Flow of SECM V0.5 ALPHA (Compact Representation)}
+    \label{fig:flowchart}
+\end{figure}
+\section{Execution Flow}
+
+\subsection{Time-Agnostic Operation}
+It is important to note that SECM V0.5 ALPHA does not contain any inherent time variable. All calculations proceed in discrete steps driven by changes in productive capacity (\(X\)), not by calendar time. The temporal resolution of results is entirely determined by the time interval of the input data used. For example, if inputs are annual, each model step represents one year; if inputs are decadal, each step represents ten years. This design ensures that the model can operate across datasets of varying temporal granularity, provided that the intervals remain consistent throughout a simulation.
+
+The ordering of modules in the computational sequence reflects logical dependencies, not chronological causality. This means that while the flow of computation is fixed, it should not be interpreted as representing the actual timing of societal processes.
+
+\subsection{Stepwise Process Overview}
+A single execution cycle of SECM V0.5 ALPHA follows the general structure below:
+\begin{enumerate}
+    \item \textbf{Input Mapping and Normalization} – Raw data is standardized and scaled to ensure comparability.
+    \item \textbf{Core Capacity Calculation (\(X\))} – Productive capacity is computed from energy, labor, and other base metrics.
+    \item \textbf{Innovation Dividend Calculation (\(X_{\text{bonus}}\))} – Technological and institutional gains are incorporated.
+    \item \textbf{Social Complexity (\(Z_c\)) and System Vulnerability (\(\Omega\))} – Societal structural stresses and systemic risks are quantified.
+    \item \textbf{Net Tension Driver (\(Z_{\mathrm{eff}}\))} – Integrates complexity, innovation, and shocks into a net pressure indicator.
+    \item \textbf{Societal Stress (\(Y\)) and Carrying Capacity (\(Y_{\mathrm{limit}}\))} – Final stress and capacity measures are calculated.
+    \item \textbf{Crisis Pool (\(S_t\)) and Resilience Reset (\(I_{\mathrm{reset}}\))} – Tracks overload accumulation and periodic relief.
+    \item \textbf{Output Generation} – Results are logged, visualized, and optionally exported.
+\end{enumerate}
+
+\subsection{Parallel and Sequential Dependencies}
+While most modules execute in a linear sequence, some are computed in parallel to improve efficiency:
+\begin{itemize}
+    \item \(Z_c\) and \(\Omega\) are derived from different subsets of normalized inputs and can be calculated independently before contributing to \(Y_{\mathrm{limit}}\) and \(Z_{\mathrm{eff}}\).
+    \item \(S_t\) and \(I_{\mathrm{reset}}\) depend on prior \(Y\) and \(Y_{\mathrm{limit}}\) outputs but do not feed back into the same cycle.
+\end{itemize}
+\section{Mathematical Formulation}
+
+This section presents the full set of equations used in SECM V0.5 ALPHA, along with descriptive explanations of each variable. The formulas are expressed in a conceptual form suitable for analytical understanding, rather than in programming syntax.
+
+\subsection{Productive Capacity ($X$)}
+\begin{equation}
+X_{\text{real},t} = \max\left(0, \text{PrimaryEnergy}_t + \text{AnimalPower}_t + \text{KWPE}_t \right)
+\end{equation}
+\begin{equation}
+X_{\text{norm},t} = \frac{X_{\text{real},t}}{X_{\text{real},0}}
+\end{equation}
+Here, \(X_{\text{real}}\) represents actual productive capacity, and \(X_{\text{norm}}\) is normalized against an initial baseline \(X_{\text{real},0}\).
+
+\subsection{Innovation Dividend ($X_{\text{bonus}}$)}
+\begin{equation}
+X_{\text{bonus},t} = \theta \cdot \text{STEMshare}_t \cdot \text{EduRate}_t \cdot (1 + \text{TFP}_t) \cdot \left( 1 + \frac{\text{PatentDensity}_t}{\text{PatentDensity}_{t-1}} \right) \cdot \left( 1 + \frac{X_{\text{real},t}}{X_{\text{real},t-1}} \right)^{P}
+\end{equation}
+\begin{equation}
+X_{\text{bonus,norm},t} = \mathrm{clip}\left( \frac{X_{\text{bonus},t}}{X_{\text{real},0}}, 0, +\infty \right)
+\end{equation}
+Where $\theta$ is the bonus scaling factor, and $P$ is a productivity elasticity parameter.
+
+\subsection{Social Complexity ($Z_c$)}
+\begin{equation}
+Z_{c,t} = \frac{\text{Gini}_t + S_{\text{murder},t} + S_{\text{poverty},t} + \text{MCapGDP}_t + (1 - \text{Trust}_t) + \text{Urbanization}_t}{n}
+\end{equation}
+with:
+\[
+S_{\text{murder},t} = \frac{\text{MurderRate}_t}{100} \cdot \sqrt{2}, \quad
+S_{\text{poverty},t} = \frac{\text{PovertyRate}_t}{100}
+\]
+
+\subsection{System Vulnerability ($\Omega$)}
+\begin{equation}
+\Omega_t = f(\text{SavingsRate}_t, \text{DebtRate}_t, \text{UnemploymentRate}_t, \text{LPI}_t, \text{OmegaShock}_t)
+\end{equation}
+The exact form $f(\cdot)$ is a weighted combination of the listed indicators, capturing financial and structural fragility.
+
+\subsection{Net Tension Driver ($Z_{\mathrm{eff}}$)}
+\begin{equation}
+Z_{\mathrm{eff},t} = g(Z_{c,t}, \text{relax}_t, X_{\text{bonus,norm},t}, Z_{\text{shock},t}, \text{DriftTerm})
+\end{equation}
+where $g(\cdot)$ represents a transformation that scales and signs $Z_t$ based on relaxation factors and external shocks.
+
+\subsection{Societal Stress Index ($Y$)}
+\begin{equation}
+Y_t = Y_{\text{base},t} + \Delta Y_t
+\end{equation}
+with:
+\[
+\Delta Y_t = h(X_{\text{norm},t}, Z_{\mathrm{eff},t}, \text{PopPressure}_t, \text{GammaS}, \text{GammaX}, K_Y)
+\]
+The function $h(\cdot)$ encapsulates the sensitivity of stress to productivity, tension, and demographic pressure.
+
+\subsection{Carrying Capacity ($Y_{\mathrm{limit}}$)}
+\begin{equation}
+Y_{\mathrm{limit},t} = X_{\text{norm},t} \cdot k_{\mathrm{limit}} \cdot \Omega_t \cdot (1 + \text{MilitaryRatio}_t)
+\end{equation}
+
+\subsection{Crisis Pool ($S_t$)}
+\begin{equation}
+S_t = \max(0, S_{t-1} + \max(0, Y_t - Y_{\mathrm{limit},t}) - \lambda_S S_{t-1})
+\end{equation}
+This variable represents accumulated societal overload beyond carrying capacity. Its decay rate $\lambda_S$ is abstracted and should be adapted by users for specific scenarios.
+
+\subsection{Resilience Reset ($I_{\mathrm{reset}}$)}
+\begin{equation}
+I_{\mathrm{reset},t} = \phi(Y_t, Y_{\mathrm{limit},t}, S_t)
+\end{equation}
+The function $\phi(\cdot)$ models periodic reductions in accumulated overload due to systemic adaptation. Its exact form is left open for user specification, as real-world reset dynamics vary by society and event type.
+
+\subsection{Note on Overload and Recovery Parameters}
+Both $S_t$ and $I_{\mathrm{reset}}$ are conceptual constructs to help users visualize the magnitude of societal overload and recovery potential. The parameters controlling their behavior are not universal constants; they should be adjusted based on the context, nature, and severity of the events under study.
+\section{Variable Definitions and Descriptions}
+
+The following table summarizes the key variables used in SECM V0.5 ALPHA, their conceptual meaning, and units (if applicable). This list corresponds to the conceptual model; it does not use programming variable names.
+
+\begin{longtable}{p{3cm} p{9cm} p{3cm}}
+\toprule
+\textbf{Variable} & \textbf{Description} & \textbf{Unit / Scale} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Variable} & \textbf{Description} & \textbf{Unit / Scale} \\
+\midrule
+\endhead
+
+\multicolumn{3}{l}{\textit{Core Capacity Metrics}} \\
+$X_{\text{real}}$ & Actual productive capacity, calculated from energy and labor equivalence. & kWh (million) \\
+$X_{\text{norm}}$ & Normalized productive capacity, relative to baseline. & Dimensionless \\
+KWPE & KW Productivity Equivalent, human labor converted to energy-equivalent productivity. & kWh (million) \\
+
+\multicolumn{3}{l}{\textit{Innovation Metrics}} \\
+$X_{\text{bonus}}$ & Innovation dividend from STEM share, education, TFP growth, and patent density. & Dimensionless \\
+$X_{\text{bonus,norm}}$ & Normalized innovation dividend. & Dimensionless \\
+
+\multicolumn{3}{l}{\textit{Social Structure and Vulnerability}} \\
+$Z_c$ & Social complexity index, aggregating inequality, violence, poverty, market dominance, trust, and urbanization. & Dimensionless \\
+$\Omega$ & System vulnerability index, combining financial and structural fragility indicators. & Dimensionless \\
+$Z_{\mathrm{eff}}$ & Net tension driver, combining $Z_c$, innovation, shocks, and drift. & Dimensionless \\
+
+\multicolumn{3}{l}{\textit{Societal Stress and Capacity}} \\
+$Y_{\text{base}}$ & Baseline societal stress before adjustments. & Dimensionless \\
+$Y$ & Societal stress index after applying drivers and modifiers. & Dimensionless \\
+$Y_{\mathrm{limit}}$ & Carrying capacity limit before instability. & Dimensionless \\
+
+\multicolumn{3}{l}{\textit{Overload Dynamics}} \\
+$S_t$ & Crisis pool size, cumulative overload beyond $Y_{\mathrm{limit}}$. & Dimensionless \\
+$I_{\mathrm{reset}}$ & Resilience reset index, representing overload reduction due to adaptation. & Dimensionless \\
+
+\multicolumn{3}{l}{\textit{External and Contextual Variables}} \\
+ZShock & Exogenous event intensifying or reducing societal tension. & Dimensionless \\
+OmegaShock & Exogenous event intensifying or reducing system vulnerability. & Dimensionless \\
+PopPressure & Population pressure based on density and available resources. & Dimensionless \\
+MilitaryRatio & Military burden relative to GDP. & \% of GDP \\
+MCapGDP & Market capitalization as a ratio to GDP. & Ratio \\
+Gini & Income or wealth inequality coefficient. & 0--1 \\
+Poverty & Poverty rate. & \% of population \\
+Murder & Intentional homicide rate. & per 100k people \\
+Urbanization & Urban population share. & \% of population \\
+EduRate & Education attainment rate. & \% of population \\
+TFP & Total factor productivity index. & Dimensionless \\
+PatentDensity & Patents per million people. & patents / million \\
+PrimaryEnergy & Total primary energy supply. & kWh (million) \\
+AnimalPower & Energy from animal labor. & kWh (million) \\
+Healthcare & Healthcare coverage rate. & \% of population \\
+Pension & Pension coverage rate. & \% of population \\
+FreeEdu & Free education coverage rate. & \% of population \\
+UnempIns & Unemployment insurance coverage. & \% of population \\
+SocSecIndex & Social security coverage index. & Dimensionless \\
+
+\bottomrule
+\end{longtable}
+\section{Limitations and Intended Use}
+
+\subsection{Non-Predictive Nature}
+SECM V0.5 ALPHA is designed for analytical exploration rather than deterministic forecasting. Model outputs should be interpreted as structured reflections of the interactions between productive capacity, social complexity, vulnerability, and capacity limits, given a specific set of inputs and parameters. They do not represent certainties about future events.
+
+\subsection{Data Dependency and Proxy Requirements}
+The reliability of SECM outputs depends heavily on the quality and representativeness of input data. While default variables are selected for their accessibility and relevance, users are encouraged to replace them with context-specific indicators when better alternatives are available.  
+For historical or pre-statistical periods, proxies may be necessary (e.g., archaeological yield estimates for agricultural productivity, or historical tax records for economic output). Identifying and validating such proxies is the responsibility of the user. The author does not provide such datasets and makes no claims about their accuracy.
+
+\subsection{Societal Overload and Recovery Dynamics}
+The Crisis Pool ($S_t$) and Resilience Reset ($I_{\mathrm{reset}}$) components are included to provide users with a more intuitive view of cumulative societal overload and potential recovery capacity. However, the magnitude of overload a society can tolerate, and the mechanisms by which it recovers, vary greatly across cultures, governance systems, and historical contexts.
+
+The overload decay rate and reset functions in SECM are intentionally generic, serving as conceptual placeholders rather than prescriptive formulas. Users must adapt these elements to their research context, defining appropriate decay rates, reset triggers, and recovery magnitudes based on empirical or historical evidence relevant to the society under study.
+
+\subsection{Time-Agnostic Structure}
+SECM operates in discrete computational steps tied to changes in productive capacity ($X$), not to calendar years. The length of each step is determined solely by the time resolution of the input data. This feature enables flexible application to both modern datasets and historical reconstructions, but it also means that the model cannot directly account for short-term fluctuations within a given input interval.
+
+\subsection{Development Status}
+This version, V0.5 ALPHA, remains in active development. Formulae, parameters, and variable definitions are subject to refinement as additional testing, validation, and theoretical advancements are incorporated.
+\section{Conclusion}
+
+The Societal Evolution Computational Model (SECM) V0.5 ALPHA represents an original, modular framework for systematically exploring the interactions between productive capacity, social complexity, systemic vulnerability, societal stress, and carrying capacity.  
+Its architecture integrates multiple domains—economic, social, demographic, and structural—into a coherent computational process, enabling both cross-sectional and longitudinal analysis.
+
+A key distinguishing feature of SECM is its \textbf{time-agnostic} design, in which computational steps are driven by changes in productive capacity rather than fixed calendar intervals. This allows the model to operate flexibly across modern datasets, historical reconstructions, and counterfactual scenarios, provided that input intervals are consistent.
+
+While SECM provides a detailed and interconnected set of modules—including the Crisis Pool and Resilience Reset mechanisms—it is not a predictive “crystal ball.” The model is intended for hypothesis testing, scenario exploration, and comparative analysis, not for forecasting specific future events.  
+Its results should be interpreted as structured expressions of the relationships between chosen variables, within the limitations and assumptions of the framework.
+
+Ongoing development will focus on expanding variable options, refining functional forms, and enhancing validation across diverse historical and cultural contexts. The present version should be regarded as an evolving research tool rather than a finalized or definitive model.
+\section{Acknowledgments}
+
+The author wishes to acknowledge that the development of SECM V0.5 ALPHA, as well as the preparation of this technical white paper, benefited from the use of artificial intelligence tools for drafting, editing, and structuring content.  
+These tools assisted in improving clarity, ensuring consistent terminology, and generating certain diagrammatic representations, but the conceptual framework, mathematical formulation, and variable selection remain the sole work of the author.
+
+The author also acknowledges the contributions of publicly available statistical databases, prior theoretical research in systems modeling, and the broader academic discourse on societal resilience, complexity, and capacity limits.  
+While specific references are provided in the bibliography, the SECM framework itself is an independent, original synthesis that does not replicate any pre-existing model in its entirety.
+\section{References}
+
+\begin{hangparas}{0.5in}{1}
+
+Meadows, D. H., Meadows, D. L., Randers, J., \& Behrens, W. W. (1972). \textit{The Limits to Growth: A Report for the Club of Rome's Project on the Predicament of Mankind}. Universe Books.
+
+Tainter, J. A. (1988). \textit{The Collapse of Complex Societies}. Cambridge University Press.
+
+Smil, V. (2017). \textit{Energy and Civilization: A History}. The MIT Press.
+
+Romer, P. M. (1990). Endogenous technological change. \textit{Journal of Political Economy, 98}(5, Part 2), S71–S102. https://doi.org/10.1086/261725
+
+World Bank. (2023). \textit{World Development Indicators}. Retrieved from https://databank.worldbank.org/source/world-development-indicators
+
+United Nations Development Programme. (2022). \textit{Human Development Report 2022: Uncertain Times, Unsettled Lives}. Retrieved from https://hdr.undp.org/
+
+OECD. (2023). \textit{OECD Data}. Retrieved from https://data.oecd.org/
+
+\end{hangparas}
+\end{document}

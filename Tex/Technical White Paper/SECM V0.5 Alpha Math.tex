@@ -1,0 +1,69 @@
+\documentclass{article}
+\begin{document}
+\section{Mathematical Formulation}
+
+\subsection{Productive Capacity ($X$)}
+\begin{equation}
+X_{\mathrm{real},t} = \max \left( 0, \mathrm{PrimaryEnergy}_t + \mathrm{AnimalPower}_t + \mathrm{KWPE}_t \right)
+\end{equation}
+
+\begin{equation}
+X_{\mathrm{norm},t} = \frac{X_{\mathrm{real},t}}{X_{\mathrm{real},0}}
+\end{equation}
+
+\subsection{Innovation Dividend ($X_{\mathrm{bonus}}$)}
+\begin{equation}
+X_{\mathrm{bonus},t} = \theta \cdot \mathrm{STEMshare}_t \cdot \mathrm{EduRate}_t \cdot (1 + \mathrm{TFP}_t) 
+\cdot \left( 1 + \frac{\mathrm{PatentDensity}_t}{\mathrm{PatentDensity}_{t-1}} \right)
+\cdot \left( 1 + \frac{X_{\mathrm{real},t}}{X_{\mathrm{real},t-1}} \right)^{P}
+\end{equation}
+
+\begin{equation}
+X_{\mathrm{bonus,norm},t} = \mathrm{clip} \left( \frac{X_{\mathrm{bonus},t}}{X_{\mathrm{real},0}}, 0, +\infty \right)
+\end{equation}
+
+\subsection{Social Complexity ($Z_c$)}
+\begin{equation}
+Z_{c,t} = \frac{Gini_t + S_{\mathrm{murder},t} + S_{\mathrm{poverty},t} + \mathrm{MCapGDP}_t + (1 - Trust_t) + Urbanization_t}{n}
+\end{equation}
+
+\begin{equation}
+S_{\mathrm{murder},t} = \frac{\mathrm{MurderRate}_t}{100} \cdot \sqrt{2}
+\end{equation}
+
+\begin{equation}
+S_{\mathrm{poverty},t} = \frac{\mathrm{PovertyRate}_t}{100}
+\end{equation}
+\subsection{System Vulnerability ($\Omega$)}
+\begin{equation}
+\Omega_t = f \left( \mathrm{SavingsRate}_t, \mathrm{DebtRate}_t, \mathrm{UnemploymentRate}_t, \mathrm{LPI}_t, \mathrm{OmegaShock}_t \right)
+\end{equation}
+
+\subsection{Net Tension Driver ($Z_{\mathrm{eff}}$)}
+\begin{equation}
+Z_{\mathrm{eff},t} = g \left( Z_{c,t}, \mathrm{relax}_t, X_{\mathrm{bonus,norm},t}, Z_{\mathrm{shock},t}, \mathrm{DriftTerm} \right)
+\end{equation}
+
+\subsection{Societal Stress Index ($Y$)}
+\begin{equation}
+Y_t = Y_{\mathrm{base},t} + \Delta Y_t
+\end{equation}
+
+\begin{equation}
+\Delta Y_t = h \left( X_{\mathrm{norm},t}, Z_{\mathrm{eff},t}, \mathrm{PopPressure}_t, \Gamma_S, \Gamma_X, K_Y \right)
+\end{equation}
+\subsection{Carrying Capacity ($Y_{\mathrm{limit}}$)}
+\begin{equation}
+Y_{\mathrm{limit},t} = X_{\mathrm{norm},t} \cdot k_{\mathrm{limit}} \cdot \Omega_t \cdot \left( 1 + \mathrm{MilitaryRatio}_t \right)
+\end{equation}
+
+\subsection{Crisis Pool ($S_t$)}
+\begin{equation}
+S_t = \max \left( 0, S_{t-1} + \max \left( 0, Y_t - Y_{\mathrm{limit},t} \right) - \lambda_S S_{t-1} \right)
+\end{equation}
+
+\subsection{Resilience Reset ($I_{\mathrm{reset}}$)}
+\begin{equation}
+I_{\mathrm{reset},t} = \phi \left( Y_t, Y_{\mathrm{limit},t}, S_t \right)
+\end{equation}
+\end{document}

@@ -1,0 +1,30 @@
+flowchart TB
+%% SECM V0.5 ALPHA – Logical Module Diagram (Simplified)
+
+Inputs["Inputs"] --> Xcalc["X Calculation Module"]
+Inputs --> Norm["Normalization Module"]
+
+Xcalc --> Xbonus["Innovation Dividend Module"]
+Norm --> Omega["System Vulnerability Module"]
+Norm --> Zc["Social Complexity Module"]
+
+Xbonus --> Zaxis["Net Tension Driver Module"]
+Zc --> Zaxis
+Norm --> Zaxis
+
+Xcalc --> Ybase["Base Stress Level"]
+Zaxis --> Ycalc["Societal Stress Index Module"]
+Ybase --> Ycalc
+
+Ycalc --> Ylimit["Carrying Capacity Module"]
+Omega --> Ylimit
+Norm --> Ylimit
+
+Ycalc --> Crisis["Crisis Pool Module"]
+Ylimit --> Crisis
+
+Crisis --> Reset["Resilience Reset Module"]
+
+Reset --> Outputs["Outputs"]
+Ylimit --> Outputs
+Ycalc --> Outputs

@@ -1,0 +1,28 @@
+flowchart TB
+%% SECM V0.5 ALPHA – Logical Flowchart (Simplified)
+
+Start["Start / Data Input"] --> Map["Map & Normalize Inputs"]
+Map --> CalcX["Calculate Productivity (X)"]
+CalcX --> Bonus["Calculate Innovation Dividend (X_bonus)"]
+CalcX --> BaseY["Calculate Base Stress (Y_base)"]
+
+Map --> CalcOmega["Calculate System Vulnerability (Ω)"]
+Map --> CalcZc["Calculate Social Complexity (Z_c)"]
+
+Bonus --> CalcZ["Calculate Net Tension Driver (Z_eff)"]
+CalcZc --> CalcZ
+
+BaseY --> CalcY["Calculate Societal Stress Index (Y)"]
+CalcZ --> CalcY
+
+CalcOmega --> CalcYlimit["Calculate Carrying Capacity (Y_limit)"]
+CalcY --> CalcYlimit
+
+CalcY --> Crisis["Update Crisis Pool (S_t)"]
+CalcYlimit --> Crisis
+
+Crisis --> Reset["Calculate Resilience Reset (I_reset)"]
+
+Reset --> Output["Generate Outputs (Logs, Charts, CSV)"]
+CalcYlimit --> Output
+CalcY --> Output

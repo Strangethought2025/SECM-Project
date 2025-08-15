@@ -1,0 +1,122 @@
+flowchart TB
+%% SECM V0.5 ALPHA – Execution Logic Diagram (Compact Layout)
+
+%% ===== Step 0: Inputs Mapping =====
+subgraph Inputs
+direction LR
+POP["Population"] --- PE["Primary Energy"] --- AP["Animal Power"] --- STEMshare["STEM Workforce Share"]
+EduRate["Education Rate"] --- TFP["Total Factor Productivity"] --- PatentCount["Patent Count"] --- Gini["Gini Coefficient"]
+Trust["Social Trust Index"] --- SavingsRate["Savings Rate"] --- DebtRate["Debt Ratio"] --- UnemploymentRate["Unemployment Rate"]
+MilitaryRatio["Military Burden Ratio"] --- MCapGDP["Market Cap / GDP"] --- ArableLand["Arable Land"] --- LPI["LPI Index"]
+Healthcare["Healthcare Coverage"] --- Pension["Pension Coverage"] --- FreeEdu["Free Education Coverage"] --- UnempIns["Unemployment Insurance"]
+SocSecIndex["Social Security Index"] --- Poverty["Poverty Rate"] --- Murder["Murder Rate"] --- Urbanization["Urbanization Rate"]
+ZShock["ZShock External"] --- OmegaShock["OmegaShock External"]
+end
+
+%% ===== Step 0b: Parameters =====
+subgraph Parameters
+direction LR
+KP["KY, KLimit, YLimitDecayBeta"] --- GZ["GammaS, GammaX, ZcWeight, ZImpactK"]
+BN["BonusTheta, BonusP"] --- SD["SDecayRate, S0"]
+LC["Land Capacity Limit Coef"] --- DR["Drift Term"]
+end
+
+%% ===== Step 0c: State (t-1) =====
+subgraph State_t_1
+direction LR
+YPREV["Previous Y"] --- SPREV["Previous S"] --- XNLAST["Last X_norm"] --- PRLAST["Last Patent Density"]
+XR0["Initial X_real"] --- XRLAST["Last X_real"]
+end
+
+%% ===== Step 1: X Calculation Module =====
+subgraph X_Calc["X Calculation Module"]
+direction LR
+KWPE["KW Productivity Equivalent"] --- Xreal["Actual Productivity X"] --- Xnorm["Normalized Productivity (X_norm)"] --- dX["ΔX"]
+end
+
+%% ===== Step 2: Normalize Inputs =====
+subgraph NormInputs["Normalization"]
+direction LR
+RELAX["Relaxation Factor"] --- POPD["Population Density"] --- POPP["Population Pressure"] --- MLR["Military Ratio (norm)"]
+OMEGA_in["Omega Inputs"] --- ZC_in["Z_c Inputs"]
+end
+
+%% ===== Step 3: Omega Calculation =====
+subgraph OmegaCalc["System Vulnerability Module"]
+Omega["System Vulnerability (Ω)"]
+end
+
+%% ===== Step 4: Zc Calculation =====
+subgraph ZcCalc["Social Complexity Module"]
+Zc["Social Complexity Index (Z_c)"]
+end
+
+%% ===== Step 5: X Bonus Calculation =====
+subgraph XBonusCalc["Innovation Dividend Module"]
+direction LR
+Xbonus["Innovation Dividend (X_bonus)"] --- XbonusNorm["Normalized X_bonus"]
+end
+
+%% ===== Step 6: Z Axis Calculation =====
+subgraph ZaxisCalc["Net Tension Driver Module"]
+direction LR
+Zt["Raw Tension (Z_t)"] --- Zscaled["Scaled Z"] --- Zeff["Net Tension Driver (Z_eff)"]
+end
+
+%% ===== Step 7+8: Y Calculation =====
+subgraph Y_Calc["Societal Stress Index Module"]
+direction LR
+Ybase["Base Stress Level (Y_base)"] --- Yt["Societal Stress Index (Y)"]
+end
+
+%% ===== Step 9: Y_limit Calculation =====
+subgraph YlimitCalc["Carrying Capacity Module"]
+Ylimit["Carrying Capacity Limit (Y_limit)"]
+end
+
+%% ===== Step 10: Crisis Pool =====
+subgraph CrisisPool["Crisis Pool Module"]
+St["Crisis Pool Size (S_t)"]
+end
+
+%% ===== Step 11: Reset =====
+subgraph ResetCalc["Resilience Reset Module"]
+Ireset["Resilience Reset Index (I_reset)"]
+end
+
+%% ===== Step 12: Outputs =====
+subgraph Outputs
+direction LR
+LOG["Result Log"] --- CSV["Export CSV/Excel"] --- PLOT["Charts & Visualization"]
+end
+
+%% ===== Wiring according to SECM_Engine RunOnce =====
+POP & PE & AP --> KWPE
+KWPE --> Xreal --> Xnorm --> dX
+
+Inputs --> NormInputs
+Xreal & Xnorm --> NormInputs
+
+NormInputs --> Omega
+OmegaShock --> Omega
+
+NormInputs --> Zc
+
+STEMshare & EduRate & TFP & PatentCount & PRLAST & XR0 & XRLAST & BN --> Xbonus
+Xbonus --> XbonusNorm
+
+Zc & RELAX & XbonusNorm & ZShock & DR --> Zeff
+
+Xnorm --> Ybase
+
+Ybase & POPP & KP & GZ & XNLAST & YPREV & Zeff --> Yt
+
+Xnorm & Omega & MilitaryRatio & KP --> Ylimit
+
+Yt & Ylimit & SD --> St
+
+St & Ylimit --> Ireset
+
+Xreal & Xbonus & Zeff & Yt & Ylimit & St & Ireset --> LOG
+LOG --> CSV
+LOG --> PLOT
