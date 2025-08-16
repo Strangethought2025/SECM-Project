@@ -1,6 +1,6 @@
 # SECM: Societal Evolution Computational Model
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16625001.svg)](https://doi.org/10.5281/zenodo.16625001)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16884870.svg)](https://doi.org/10.5281/zenodo.16884870)
 ![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-blue)
 ![Version](https://img.shields.io/badge/version-v0.4-green)
 
