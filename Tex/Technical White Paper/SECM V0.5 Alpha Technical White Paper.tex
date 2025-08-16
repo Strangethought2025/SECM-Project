@@ -12,8 +12,9 @@
 \usepackage{longtable}
 \usepackage{natbib}
 \usepackage{titlesec}
+\newcommand{\OmegaShock}{\Omega_{\text{Shock}}}
 \usepackage{hanging}
-
+\usepackage{float}  
 % ===== Formatting =====
 \setstretch{1.2}
 \titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
@@ -32,11 +33,11 @@
 
 % ===== Abstract =====
 \begin{abstract}
-The Societal Evolution Computational Model (SECM) V0.5 ALPHA is an original, modular computational framework designed to analyze the evolution of societal stress, carrying capacity, and systemic resilience over time. While the model draws on established energy equivalence concepts for its KW Productivity Equivalent (KWPE) metric, all other components---including the mathematical structure, integration logic, and module interactions---are original contributions by the author.
+The Societal Evolution Computational Model (SECM) V0.5 ALPHA is an original modular computational framework designed to analyze the evolution of social stress, carrying capacity, and systemic resilience over time. Although the model draws on established energy equivalence concepts for its KW Productivity Equivalent (KWPE) metric, all other components---including the mathematical structure, integration logic, and module interactions---are original contributions by the author.
 
-The model is not a predictive “crystal ball,” but rather an exploratory tool for identifying generalized patterns in the co-evolution of societal productivity, complexity, and stability. SECM is inherently time-agnostic: its stepwise calculations are driven exclusively by changes in productive capacity (\(X\)), and the temporal resolution of results is determined solely by the input data’s interval (e.g., annual, decadal). This feature allows the model to operate across diverse historical and contemporary datasets, provided intervals remain consistent.
+The model is not a predictive "crystal ball," but rather an exploratory tool to identify generalized patterns in the coevolution of societal productivity, complexity, and stability. SECM is inherently time-agnostic: its stepwise calculations are driven exclusively by changes in productive capacity (\(X\)), and the temporal resolution of the results is determined solely by the interval of the input data (e.g., annual, decadal). This feature allows the model to operate on diverse historical and contemporary datasets, provided that the intervals remain consistent.
 
-By incorporating representative and accessible variables, SECM enables reproducibility while allowing users to substitute better proxies when available. Historical data gaps and pre-statistical proxies must be supplied by the user, as the author does not provide archaeological or historical dataset recommendations. The present paper focuses on the computational workflow and mathematical formulation; methodology and validation details are provided in separate documents.
+By incorporating representative and accessible variables, SECM enables reproducibility while allowing users to substitute better proxies when available. Historical data gaps and prestatistical proxies must be supplied by the user, as the author does not provide archaeological or historical dataset recommendations. The present paper focuses on the computational workflow and mathematical formulation; methodology and validation details are provided in separate documents.
 
 \end{abstract}
 
@@ -45,55 +46,55 @@ By incorporating representative and accessible variables, SECM enables reproduci
 \newpage
 \section{Introduction}
 
-The Societal Evolution Computational Model (SECM) V0.5 ALPHA is an original, modular computational framework designed to explore the generalized dynamics of societal stress, carrying capacity, and systemic resilience. While many prior models address economic growth, environmental limits, or social change individually, SECM integrates these domains into a unified structure that is both data-driven and adaptable across contexts.
+The Societal Evolution Computational Model (SECM) V0.5 ALPHA is an original modular computational framework designed to explore the generalized dynamics of societal stress, carrying capacity, and systemic resilience. Although many prior models address economic growth, environmental limits, or social change individually, SECM integrates these domains into a unified structure that is data-driven and adaptable across contexts.
 
-The model’s core purpose is \textbf{exploratory}, not predictive. SECM is intended to serve as an analytical framework for investigating how productive capacity, social complexity, and systemic vulnerability interact over extended periods. The model is suitable for historical analysis, counterfactual scenarios, and forward-looking stress testing---provided the user understands that the outputs represent structured computations of relationships between variables, not deterministic forecasts of future events.
+The core purpose of the model is \textbf{ exploration}, not predictive. SECM is intended to serve as an analytical framework for investigating how productive capacity, social complexity, and systemic vulnerability interact over extended periods. The model is suitable for historical analysis, counterfactual scenarios, and forward-looking stress testing ----provided the user understands that the outputs represent structured computations of relationships between variables, not deterministic forecasts of future events.
 
-SECM’s architecture is composed of distinct computational modules linked through well-defined data flows. These include modules for calculating productive capacity (\(X\)), innovation dividends, social complexity, systemic vulnerability (\(\Omega\)), net tension drivers (\(Z_{\mathrm{eff}}\)), societal stress index (\(Y\)), carrying capacity (\(Y_{\mathrm{limit}}\)), and overload dynamics (Crisis Pool \(S_t\) and Resilience Reset \(I_{\mathrm{reset}}\)).
+The SECM architecture is made up of distinct computational modules linked through well-defined data flows. These include modules to calculate productive capacity (\(X\)), innovation dividends, social complexity, systemic vulnerability (\(\Omega\)), net tension drivers (\(Z_{\mathrm{eff}}\)), societal stress index (\(Y\)), carrying capacity (\(Y_{\mathrm{limit}}\)), and overload dynamics (Crisis Pool \(S_t\) and Resilience Reset \(I_{\mathrm{reset}}\)).
 
-An important structural feature of SECM V0.5 ALPHA is its \textbf{time-agnostic nature}. The model does not contain an inherent time variable. Instead, it operates in discrete steps driven exclusively by changes in productive capacity (\(X\)), and the temporal resolution of the simulation is determined entirely by the interval of the input data. For example, annual data produces annual steps, while decadal data produces decadal steps. This design allows the model to be applied to both modern statistical series and reconstructed historical datasets of varying temporal granularity.
+An important structural feature of SECM V0.5 ALPHA is its \textbf{time-agnostic nature}. The model does not contain an inherent time variable. Instead, it operates in discrete steps driven exclusively by changes in productive capacity (\(X\)), and the temporal resolution of the simulation is entirely determined by the interval of the input data. For example, annual data produce annual steps, while decadal data produces decadal steps. This design allows the model to be applied to both modern statistical series and reconstructed historical data sets of varying temporal granularity.
 
 In the present paper, the focus is on computational design and mathematical formulation. Data collection methodology, parameter estimation procedures, and validation results are documented separately in dedicated methodology and verification manuscripts.
 \section{Model Philosophy and Variable Design Principles}
 
 \subsection{Philosophical Basis}
-SECM V0.5 ALPHA is built upon the premise that the evolution of human societies can be analyzed through quantifiable interactions between productive capacity, social complexity, systemic vulnerability, and carrying capacity. Unlike traditional forecasting models, SECM does not attempt to predict specific events or dates. Instead, it serves as a \textbf{conceptual and computational laboratory} for testing how changes in one domain may propagate to others under varying structural conditions.
+SECM V0.5 ALPHA is based on the premise that the evolution of human societies can be analyzed through quantifiable interactions between productive capacity, social complexity, systemic vulnerability, and carrying capacity. Unlike traditional forecasting models, SECM does not attempt to predict specific events or dates. Instead, it serves as a \textbf{conceptual and computational laboratory} for testing how changes in one domain may propagate to others under varying structural conditions.
 
-This philosophical orientation ensures that SECM remains relevant across different temporal and geographic contexts. By abstracting away from rigid time dependencies, the model captures the structural logic of societal evolution rather than binding itself to historical timelines.
+This philosophical orientation ensures that SECM remains relevant in different temporal and geographic contexts. By abstracting away from rigid time dependencies, the model captures the structural logic of societal evolution rather than binding itself to historical timelines.
 
 \subsection{Non-Predictive Nature and Scope Limitations}
-The model is \textbf{not a “crystal ball”} for foretelling the future. Its outputs are best interpreted as structured indicators of stress and capacity dynamics, contingent upon the chosen input variables and parameters. The framework can highlight potential tipping points or capacity thresholds, but the actual timing, form, and consequences of such transitions are beyond its predictive remit.
+The model is \textbf{not a “crystal ball”} for foretelling the future. Its outputs are best interpreted as structured indicators of stress and capacity dynamics, depending on the input variables and parameters chosen. The framework can highlight potential tipping points or capacity thresholds, but the actual timing, form, and consequences of such transitions are beyond its predictive remit.
 
-Furthermore, the model does not address normative judgments about societal stability, desirability of certain outcomes, or prescriptive interventions. Such analyses must be conducted separately, integrating SECM’s outputs with qualitative assessments and domain-specific expertise.
+Furthermore, the model does not address normative judgments about societal stability, desirability of certain outcomes, or prescriptive interventions. Such analyses must be conducted separately, integrating SECM outputs with qualitative assessments and domain-specific expertise.
 
 \subsection{Variable Selection Rationale}
-Input variables in SECM are chosen for three primary reasons:
+Input variables in SECM are chosen for three main reasons:
 \begin{enumerate}
     \item \textbf{Representativeness}: Each variable corresponds to a structural component of societal functioning (e.g., economic productivity, demographic pressure, institutional trust).
-    \item \textbf{Accessibility}: Variables are drawn from widely available datasets, such as the World Bank, OECD, and World Values Survey.
-    \item \textbf{Substitutability}: The model allows users to replace default variables with alternative proxies better suited to their specific research contexts.
+    \item \textbf{Accessibility}: The variables are drawn from widely available datasets, such as the World Bank, OECD, and World Values Survey.
+    \item \textbf{Substitutability}: The model allows users to replace the default variables with alternative proxies that are better suited to their specific research contexts.
 \end{enumerate}
 
-Historical or pre-statistical periods may require the use of proxy indicators (e.g., archaeological yield estimates for agricultural productivity). The identification, validation, and integration of such proxies are the responsibility of the user. The author does not provide archaeological or historical datasets, as this falls outside the model’s intended scope and the author’s expertise.
+Historical or anticipatistic periods may require the use of proxy indicators (e.g., archaeological yield estimates for agricultural productivity). The identification, validation, and integration of such proxies are the responsibility of the user. The author does not provide archaeological or historical data sets, as this is outside of the intended scope of the model and the author's expertise.
 
 \subsection{Development Status}
-SECM V0.5 ALPHA remains under active development and iteration. While the current structure and formulae have undergone extensive internal testing and validation against multiple historical cases, the model is expected to evolve as additional data sources, theoretical insights, and computational techniques become available.
+SECM V0.5 ALPHA remains under active development and iteration. Although the current structure and formulae have undergone extensive internal testing and validation against multiple historical cases, the model is expected to evolve as additional data sources, theoretical insights, and computational techniques become available.
 \section{Computational Architecture}
 
 \subsection{Overview}
-The SECM V0.5 ALPHA framework is organized as a sequence of interconnected computational modules, each responsible for transforming specific categories of input data into intermediate or final indicators. This modular design improves transparency, facilitates troubleshooting, and allows targeted substitution or refinement of individual components without altering the entire system.
+The SECM V0.5 ALPHA framework is organized as a sequence of interconnected computational modules, each responsible for transforming specific categories of input data into intermediate or final indicators. This modular design improves transparency, facilitates troubleshooting, and allows the targeted substitution or refinement of individual components without altering the entire system.
 
-The architecture is divided into:
+The architecture is divided into the following:
 \begin{itemize}
-    \item \textbf{Input Mapping Modules} – Standardizes and normalizes raw data into model-compatible formats.
-    \item \textbf{Core Computational Modules} – Processes the normalized inputs into key intermediate indicators (\(X\), \(X_{\text{bonus}}\), \(Z_c\), \(\Omega\), \(Z_{\mathrm{eff}}\)).
+    \item \textbf{Input Mapping Modules} – Standardizes and normalizes raw data to model compatible formats.
+    \item \textbf{Core Computational Modules} - Processes normalize inputs into key intermediate indicators (\(X\), \(X_{\text{bonus}}\), \(Z_c\), \(\Omega\), \(Z_{\mathrm{eff}}\)).
     \item \textbf{Output Modules} – Calculates final societal stress and capacity metrics (\(Y\), \(Y_{\mathrm{limit}}\), \(S_t\), \(I_{\mathrm{reset}}\)) and produces results for analysis.
 \end{itemize}
 
 \subsection{Logical Structure}
-Figure~\ref{fig:structure} presents the logical structure of SECM V0.5 ALPHA in compact form. Each module is represented as a functional block, with arrows denoting the direction of data flow.
+Figure~\ref{fig:structure} presents the logical structure of SECM V0.5 ALPHA in compact form. Each module is represented as a functional block, with arrows denoting the direction of the data flow.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{secm_structure.png}
     \caption{Logical Structure of SECM V0.5 ALPHA (Compact Representation)}
@@ -106,17 +107,22 @@ Figure~\ref{fig:structure} presents the logical structure of SECM V0.5 ALPHA in 
     \item \textbf{Innovation Dividend Module (\(X_{\text{bonus}}\))} – Captures gains from STEM workforce share, education rate, TFP growth, and patent density.
     \item \textbf{Social Complexity Module (\(Z_c\))} – Aggregates inequality, social trust, demographic stress, and governance indicators.
     \item \textbf{System Vulnerability Module (\(\Omega\))} – Integrates financial and structural risk indicators into a composite vulnerability measure.
-    \item \textbf{Net Tension Driver Module (\(Z_{\mathrm{eff}}\))} – Combines social complexity, innovation, and exogenous shocks into an effective societal tension factor.
+    \item \textbf{Net Tension Driver Module (\(Z_{\mathrm{eff}}\))} – Combines social complexity, innovation, and exogenous shocks into an effective social tension factor.
     \item \textbf{Societal Stress Index Module (\(Y\))} – Calculates total societal stress as a function of productive capacity, net tension, and other modifiers.
     \item \textbf{Carrying Capacity Module (\(Y_{\mathrm{limit}}\))} – Estimates maximum sustainable stress before systemic instability is likely.
+
+\begin{equation}
+Y_{\mathrm{limit},t} = \text{[definition here]}
+\label{sec:Ylimit}
+\end{equation}
     \item \textbf{Crisis Pool Module (\(S_t\))} – Tracks cumulative societal overload beyond capacity.
     \item \textbf{Resilience Reset Module (\(I_{\mathrm{reset}}\))} – Represents periodic reductions in overload due to societal adaptation or restructuring.
 \end{enumerate}
 
 \subsection{Execution Flow Diagram}
-The execution flow is presented in Figure~\ref{fig:flowchart}, showing the order in which data moves through the system during a single simulation run.
+The execution flow is presented in Figure~\ref{fig:flowchart}, showing the order in which data move through the system during a single simulation run.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{secm_flowchart.png}
     \caption{Execution Flow of SECM V0.5 ALPHA (Compact Representation)}
@@ -133,206 +139,610 @@ The ordering of modules in the computational sequence reflects logical dependenc
 A single execution cycle of SECM V0.5 ALPHA follows the general structure below:
 \begin{enumerate}
     \item \textbf{Input Mapping and Normalization} – Raw data is standardized and scaled to ensure comparability.
-    \item \textbf{Core Capacity Calculation (\(X\))} – Productive capacity is computed from energy, labor, and other base metrics.
+    \item \textbf{Core Capacity Calculation (\(X\))} – Productive capacity is calculated from energy, labor and other base metrics.
     \item \textbf{Innovation Dividend Calculation (\(X_{\text{bonus}}\))} – Technological and institutional gains are incorporated.
     \item \textbf{Social Complexity (\(Z_c\)) and System Vulnerability (\(\Omega\))} – Societal structural stresses and systemic risks are quantified.
     \item \textbf{Net Tension Driver (\(Z_{\mathrm{eff}}\))} – Integrates complexity, innovation, and shocks into a net pressure indicator.
-    \item \textbf{Societal Stress (\(Y\)) and Carrying Capacity (\(Y_{\mathrm{limit}}\))} – Final stress and capacity measures are calculated.
+    \item \textbf{Societal Stress (\(Y\)) and Carrying Capacity (\(Y_{\mathrm{limit}}\))} - The final measures of stress and capacity are calculated.
     \item \textbf{Crisis Pool (\(S_t\)) and Resilience Reset (\(I_{\mathrm{reset}}\))} – Tracks overload accumulation and periodic relief.
     \item \textbf{Output Generation} – Results are logged, visualized, and optionally exported.
 \end{enumerate}
 
 \subsection{Parallel and Sequential Dependencies}
-While most modules execute in a linear sequence, some are computed in parallel to improve efficiency:
+Although most modules are executed in a linear sequence, some are computed in parallel to improve efficiency:
 \begin{itemize}
     \item \(Z_c\) and \(\Omega\) are derived from different subsets of normalized inputs and can be calculated independently before contributing to \(Y_{\mathrm{limit}}\) and \(Z_{\mathrm{eff}}\).
     \item \(S_t\) and \(I_{\mathrm{reset}}\) depend on prior \(Y\) and \(Y_{\mathrm{limit}}\) outputs but do not feed back into the same cycle.
 \end{itemize}
-\section{Mathematical Formulation}
 
-This section presents the full set of equations used in SECM V0.5 ALPHA, along with descriptive explanations of each variable. The formulas are expressed in a conceptual form suitable for analytical understanding, rather than in programming syntax.
+\section{Mathematical Formulation of SECM}
+\label{sec:equations}
 
-\subsection{Productive Capacity ($X$)}
-\begin{equation}
-X_{\text{real},t} = \max\left(0, \text{PrimaryEnergy}_t + \text{AnimalPower}_t + \text{KWPE}_t \right)
-\end{equation}
-\begin{equation}
-X_{\text{norm},t} = \frac{X_{\text{real},t}}{X_{\text{real},0}}
-\end{equation}
-Here, \(X_{\text{real}}\) represents actual productive capacity, and \(X_{\text{norm}}\) is normalized against an initial baseline \(X_{\text{real},0}\).
+This section presents the complete set of equations used in the SECM V0.5 ALPHA engine. 
+All formulas are given in their full computational form, directly aligned with the current implementation of the SECM\_Engine codebase, ensuring one-to-one correspondence between documentation and executable model. 
+Each subsection introduces one component of the model, its governing equation(s), and detailed explanations of the variables involved.
 
-\subsection{Innovation Dividend ($X_{\text{bonus}}$)}
-\begin{equation}
-X_{\text{bonus},t} = \theta \cdot \text{STEMshare}_t \cdot \text{EduRate}_t \cdot (1 + \text{TFP}_t) \cdot \left( 1 + \frac{\text{PatentDensity}_t}{\text{PatentDensity}_{t-1}} \right) \cdot \left( 1 + \frac{X_{\text{real},t}}{X_{\text{real},t-1}} \right)^{P}
-\end{equation}
-\begin{equation}
-X_{\text{bonus,norm},t} = \mathrm{clip}\left( \frac{X_{\text{bonus},t}}{X_{\text{real},0}}, 0, +\infty \right)
-\end{equation}
-Where $\theta$ is the bonus scaling factor, and $P$ is a productivity elasticity parameter.
+\subsection{Productive Capacity (\texorpdfstring{$X$}{X})}
 
-\subsection{Social Complexity ($Z_c$)}
-\begin{equation}
-Z_{c,t} = \frac{\text{Gini}_t + S_{\text{murder},t} + S_{\text{poverty},t} + \text{MCapGDP}_t + (1 - \text{Trust}_t) + \text{Urbanization}_t}{n}
-\end{equation}
-with:
-\[
-S_{\text{murder},t} = \frac{\text{MurderRate}_t}{100} \cdot \sqrt{2}, \quad
-S_{\text{poverty},t} = \frac{\text{PovertyRate}_t}{100}
-\]
+The productive capacity $X$ is the foundation of the SECM model. 
+It integrates primary energy, animal power, and the human labor equivalent (KWPE). 
+The total productive capacity in real terms is defined as:
 
-\subsection{System Vulnerability ($\Omega$)}
 \begin{equation}
-\Omega_t = f(\text{SavingsRate}_t, \text{DebtRate}_t, \text{UnemploymentRate}_t, \text{LPI}_t, \text{OmegaShock}_t)
-\end{equation}
-The exact form $f(\cdot)$ is a weighted combination of the listed indicators, capturing financial and structural fragility.
-
-\subsection{Net Tension Driver ($Z_{\mathrm{eff}}$)}
-\begin{equation}
-Z_{\mathrm{eff},t} = g(Z_{c,t}, \text{relax}_t, X_{\text{bonus,norm},t}, Z_{\text{shock},t}, \text{DriftTerm})
-\end{equation}
-where $g(\cdot)$ represents a transformation that scales and signs $Z_t$ based on relaxation factors and external shocks.
-
-\subsection{Societal Stress Index ($Y$)}
-\begin{equation}
-Y_t = Y_{\text{base},t} + \Delta Y_t
-\end{equation}
-with:
-\[
-\Delta Y_t = h(X_{\text{norm},t}, Z_{\mathrm{eff},t}, \text{PopPressure}_t, \text{GammaS}, \text{GammaX}, K_Y)
-\]
-The function $h(\cdot)$ encapsulates the sensitivity of stress to productivity, tension, and demographic pressure.
-
-\subsection{Carrying Capacity ($Y_{\mathrm{limit}}$)}
-\begin{equation}
-Y_{\mathrm{limit},t} = X_{\text{norm},t} \cdot k_{\mathrm{limit}} \cdot \Omega_t \cdot (1 + \text{MilitaryRatio}_t)
+X_{\mathrm{real}} = PE + AP + \frac{Population \times 130}{10^6}
 \end{equation}
 
-\subsection{Crisis Pool ($S_t$)}
+\noindent where:
+\begin{itemize}
+    \item $PE$ = Primary energy supply (million kWh).
+    \item $AP$ = Animal power supply (million kWh).
+    \item $Population$ = Total population (persons).
+    \item The factor $130$ represents the annual average human productivity equivalent in kWh per person, based on empirical labor-to-energy equivalence studies.
+\end{itemize}
+
+Normalization is performed relative to a locked baseline $X_{\mathrm{base}}$:
+
 \begin{equation}
-S_t = \max(0, S_{t-1} + \max(0, Y_t - Y_{\mathrm{limit},t}) - \lambda_S S_{t-1})
+X_{\mathrm{norm}} = \frac{X_{\mathrm{real}}}{X_{\mathrm{base}}}
 \end{equation}
-This variable represents accumulated societal overload beyond carrying capacity. Its decay rate $\lambda_S$ is abstracted and should be adapted by users for specific scenarios.
 
-\subsection{Resilience Reset ($I_{\mathrm{reset}}$)}
+\noindent where $X_{\mathrm{base}}$ is fixed at the first run (initial year) and remains constant throughout the simulation. This normalization ensures that all subsequent equations operate on dimensionless ratios, preserving stability across different absolute scales.
+\subsection{Technology Dividend (\texorpdfstring{$X_{\mathrm{bonus}}$}{Xbonus})}
+
+The technology dividend represents the additional productive advantage gained from 
+STEM development, education, innovation, and patent activity, beyond the baseline 
+productive capacity. It is defined as:
+
 \begin{equation}
-I_{\mathrm{reset},t} = \phi(Y_t, Y_{\mathrm{limit},t}, S_t)
+X_{\mathrm{bonus},t} = \theta \cdot STEM_t \cdot EduRate_t \cdot (1 + TFP_t) 
+ \cdot \left[ 1 + \frac{PatDen_t - PatDen_{t-1}}{PatDen_{t-1}} \right]
+ \cdot \left[ 1 + \frac{X_{\mathrm{real},t} - X_{\mathrm{real},t-1}}{X_{\mathrm{real},t-1}} \right]^{P}
 \end{equation}
-The function $\phi(\cdot)$ models periodic reductions in accumulated overload due to systemic adaptation. Its exact form is left open for user specification, as real-world reset dynamics vary by society and event type.
 
-\subsection{Note on Overload and Recovery Parameters}
-Both $S_t$ and $I_{\mathrm{reset}}$ are conceptual constructs to help users visualize the magnitude of societal overload and recovery potential. The parameters controlling their behavior are not universal constants; they should be adjusted based on the context, nature, and severity of the events under study.
-\section{Variable Definitions and Descriptions}
+\noindent where:
+\begin{itemize}
+    \item $\theta = BonusTheta$ is the technology dividend scaling coefficient.
+    \item $STEM_t$ = Proportion of STEM (Science, Technology, Engineering, Mathematics) in higher education at time $t$ (dimensionless).
+    \item $EduRate_t$ = Tertiary education enrollment rate at time $t$ (dimensionless).
+    \item $TFP_t$ = Total Factor Productivity adjustment at time $t$.
+    \item $PatDen_t$ = Patent density, defined as the number of resident patent applications normalized by population (per million people).
+    \item $P = BonusP$ is the exponent applied to the growth term of productive capacity.
+    \item $X_{\mathrm{real},t}$ = Productive capacity in real terms at time $t$.
+\end{itemize}
 
-The following table summarizes the key variables used in SECM V0.5 ALPHA, their conceptual meaning, and units (if applicable). This list corresponds to the conceptual model; it does not use programming variable names.
+\noindent This formulation captures three reinforcing mechanisms:
+\begin{enumerate}
+    \item \textbf{Knowledge Base:} Expansion of STEM education and enrollment directly increases societal capacity for innovation.
+    \item \textbf{Innovation Flow:} Growth in patent density reflects ongoing innovation, with year-to-year increases providing an additional dividend.
+    \item \textbf{Productivity Momentum:} Acceleration in $X_{\mathrm{real}}$ further magnifies the dividend, raised to the power $P$.
+\end{enumerate}
+
+Finally, the result is clipped within a bounded interval to avoid unrealistic amplification:
+
+\begin{equation}
+0 \; \leq \; X_{\mathrm{bonus},t} \; \leq \; 5
+\end{equation}
+
+\noindent This ensures stability while retaining the nonlinear amplification effect of innovation and productivity growth.
+\subsection{Net Societal Tension (\texorpdfstring{$Z_{\mathrm{eff}}$}{Zeff})}
+
+Societal tension ($Z$) reflects the aggregate effect of inequality, governance stress, 
+innovation relief, exogenous shocks, and background drift. 
+The raw tension score is constructed as a weighted average of multiple drivers:
+
+\begin{equation}
+Z_{\mathrm{raw},t} = \mathrm{avg}\big( ZShock_t,\; -relax_t,\; \gamma_S \cdot Zc_t,\; -\gamma_X \cdot X_{\mathrm{bonus,norm},t},\; Drift_t \big)
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $ZShock_t$ = Exogenous societal shocks (e.g., polarization, political crises). Can be positive (destabilizing) or negative (stabilizing).
+    \item $relax_t$ = Social welfare or stabilizing mechanisms (mitigation of societal stress).
+    \item $Zc_t$ = Complexity-driven societal contradiction index.
+    \item $\gamma_S$ = Scaling factor for $Zc$.
+    \item $\gamma_X$ = Scaling factor for technology dividend relief.
+    \item $X_{\mathrm{bonus,norm},t}$ = Normalized technology dividend term.
+    \item $Drift_t$ = Long-term systemic drift (e.g., slow-moving cultural or institutional changes).
+\end{itemize}
+
+The raw value is then normalized to a fixed range:
+
+\begin{equation}
+Z_{\mathrm{scaled},t} = \frac{Z_{\mathrm{raw},t}}{Z_{\max}} \cdot Z_{\mathrm{scale}}
+\end{equation}
+
+\noindent Finally, the effective societal tension is obtained via a nonlinear amplification 
+that preserves sign and emphasizes deviations from neutrality:
+
+\begin{equation}
+Z_{\mathrm{eff},t} = 
+\begin{cases}
+\;\;\;\;\big( (1 + Z_{\mathrm{scaled},t})^2 - 1 \big), & Z_{\mathrm{scaled},t} \geq 0 \\
+- \big( (1 + |Z_{\mathrm{scaled},t}|)^2 - 1 \big), & Z_{\mathrm{scaled},t} < 0
+\end{cases}
+\end{equation}
+
+\noindent This squared-response transformation ensures that small changes in $Z_{\mathrm{scaled}}$ 
+produce amplified effects when tensions are high, while preserving stabilizing effects 
+when $Z_{\mathrm{scaled}}$ is negative. In practice, this formulation allows $Z_{\mathrm{eff}}$ 
+to serve as an early-warning indicator of impending stress escalation or relief.
+\subsection{Structural Resilience (\texorpdfstring{$\Omega$}{Omega})}
+
+Structural resilience, denoted as $\Omega$, represents the buffering capacity of 
+a society against mounting contradictions. It incorporates economic savings, 
+employment stability, debt sustainability, and logistical performance. 
+The complete formulation is:
+
+\begin{equation}
+\Omega_t = Oc_t + \Omega_{shock,t}
+\end{equation}
+
+\noindent where:
+\begin{equation}
+Oc_t = \mathrm{avg}\Big( -SavingsRate_t,\;\; \sqrt{2} \cdot Unemployment_t,\;\; DebtRate_t,\;\; -\frac{LPI_t}{10} \Big)
+\end{equation}
+
+\noindent Variables are defined as:
+\begin{itemize}
+    \item $SavingsRate_t$ = Household savings rate (fraction of disposable income). 
+          Higher savings contribute positively to resilience, hence the negative sign reduces tension.
+    \item $Unemployment_t$ = Unemployment rate (fraction of labor force). 
+          Scaled by $\sqrt{2}$ to emphasize its nonlinear destabilizing impact.
+    \item $DebtRate_t$ = Household or national debt as a share of GDP. 
+          High debt levels reduce resilience by tightening fiscal constraints.
+    \item $LPI_t$ = World Bank Logistics Performance Index (0–5). 
+          Better logistics improve resilience, hence included as $-LPI/10$.
+    \item $\Omega_{shock,t}$ = Exogenous resilience shocks, such as natural disasters or abrupt resource shortages. Can be positive (resilience decrease) or negative (resilience improvement).
+\end{itemize}
+
+\noindent Finally, $\Omega_t$ is clipped to a bounded domain to ensure stability:
+
+\begin{equation}
+-5 \; \leq \; \Omega_t \; \leq \; 5
+\end{equation}
+
+\noindent This bounding reflects that resilience, while variable, cannot be infinite 
+in either direction. A negative $\Omega$ indicates strengthening systemic buffers, 
+while a positive $\Omega$ signals weakened resilience and heightened fragility.
+\subsection{Societal Complexity Contradiction Index (\texorpdfstring{$Z_c$}{Zc})}
+
+The societal complexity contradiction index $Z_c$ aggregates multiple structural 
+stress factors, reflecting inequality, poverty, crime, market distortions, erosion 
+of trust, and population density friction. It is defined as:
+
+\begin{multline}
+Zc_t = w_{Zc} \cdot \mathrm{avg}\Big( Gini_t,\; \sqrt{2} \cdot MurderRate_t,\; 
+\sqrt{2} \cdot PovertyRate_t,\; \min(MCapGDP_t,3), \\
+(1 - Trust_t),\; S_{popdens,t} \Big)
+\end{multline}
+
+\noindent where:
+\begin{itemize}
+    \item $w_{Zc}$ = Weight multiplier applied to the societal complexity index.
+    \item $Gini_t$ = Gini coefficient of income or wealth inequality (0–1).
+    \item $MurderRate_t$ = Annual homicide rate (per capita, scaled). 
+          Weighted by $\sqrt{2}$ to amplify its destabilizing signal.
+    \item $PovertyRate_t$ = Share of population living below the poverty line. 
+          Also weighted by $\sqrt{2}$ for emphasis.
+    \item $MCapGDP_t$ = Stock market capitalization as a ratio of GDP. 
+          Captures speculative distortions, capped at a maximum of $3$ to avoid outliers.
+    \item $Trust_t$ = Social trust index (0–1). Incorporated as $(1 - Trust_t)$, 
+          so declining trust raises contradictions.
+    \item $S_{popdens,t}$ = Population density friction term (see Section~5.6).
+\end{itemize}
+
+\noindent The result is clipped at an upper bound to prevent runaway escalation:
+
+\begin{equation}
+Zc_t \; \leq \; 5
+\end{equation}
+
+\noindent This ensures that while societal contradictions may accumulate, their 
+quantitative index remains bounded for computational tractability.
+\subsection{Population Density Friction (\texorpdfstring{$S_{popdens}$}{Spopdens})}
+
+Population density friction $S_{popdens}$ quantifies the additional societal stress 
+generated by limited arable land under conditions of rising population density 
+and urbanization. It is defined as:
+
+\begin{equation}
+S_{popdens,t} = 1 - \frac{1}{UrbanRate_t \cdot \left( \frac{Population_t}{ArableLand_t} \right)}
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $UrbanRate_t$ = Proportion of the total population living in urban areas.
+    \item $Population_t$ = Total population (persons).
+    \item $ArableLand_t$ = Total arable land area (hectares).
+\end{itemize}
+
+\noindent This formulation captures the compounding effect of:
+\begin{enumerate}
+    \item \textbf{Urban Congestion:} Higher $UrbanRate$ implies more concentration of population in limited areas, intensifying density effects.
+    \item \textbf{Land Scarcity:} A higher population-to-arable land ratio directly increases frictional stress.
+\end{enumerate}
+
+\noindent The effective value is clipped to a bounded range:
+
+\begin{equation}
+0 \; \leq \; S_{popdens,t} \; \leq \; 2.5
+\end{equation}
+
+\noindent Thus, $S_{popdens}$ acts as a saturating modifier within $Z_c$, amplifying 
+contradictions in overpopulated regions but remaining negligible where land is 
+abundant relative to population.
+\subsection{Population Pressure (\texorpdfstring{$PopPressure$}{PopPressure})}
+
+Population pressure quantifies the strain imposed on productive capacity 
+by limited arable land relative to population growth. It compares land 
+availability per capita with the productivity-equivalent carrying potential 
+($KWPE_{pc}$). The complete formulation is:
+
+\begin{equation}
+PopPressure_t = 
+\frac{\dfrac{Population_t}{ArableLand_t}}
+{\dfrac{KWPE_{pc,t}}{LandCapLimitCoef}}
+\end{equation}
+
+\noindent where:
+\begin{equation}
+KWPE_{pc,t} = \frac{ \big( PE_t + AP_t + \frac{Population_t \times 130}{10^6} \big) }{Population_t} \times 10^6
+\end{equation}
+
+\noindent Variables are defined as:
+\begin{itemize}
+    \item $Population_t$ = Total population (persons).
+    \item $ArableLand_t$ = Total arable land (hectares).
+    \item $PE_t$ = Primary energy supply (million kWh).
+    \item $AP_t$ = Animal power supply (million kWh).
+    \item $130$ = Annual human productivity equivalent in kWh/person.
+    \item $KWPE_{pc,t}$ = Per-capita productivity equivalent, expressed in kWh per person.
+    \item $LandCapLimitCoef$ = Coefficient controlling the effect of arable land scarcity.
+\end{itemize}
+
+\noindent Interpretation:
+\begin{enumerate}
+    \item When $Population/ArableLand$ rises, pressure increases.
+    \item Higher $KWPE_{pc}$ offsets land scarcity by raising effective carrying capacity.
+    \item The $LandCapLimitCoef$ scales the sensitivity of population-land imbalance.
+\end{enumerate}
+
+\noindent This ratio ensures that both demographic growth and technological 
+productivity jointly determine whether land scarcity becomes a destabilizing 
+factor in societal dynamics.
+\subsection{Baseline Social Tension (\texorpdfstring{$Y_{base}$}{Ybase})}
+
+The baseline level of societal contradictions, denoted $Y_{base}$, represents 
+the expected structural cost of maintaining a given productive capacity, before 
+additional dynamic factors (such as shocks or population pressure) are applied. 
+It is defined as:
+
+\begin{equation}
+Y_{base,t} = a_0 + a_1 \cdot X_{\mathrm{norm},t} + b_1 \cdot Gini_t + \mu \cdot \ln(1 + X_{\mathrm{real},t})
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $a_0$ = Constant offset parameter.
+    \item $a_1$ = Scaling coefficient linking normalized productive capacity $X_{\mathrm{norm}}$ to baseline tension.
+    \item $b_1$ = Coefficient linking income inequality (Gini coefficient) to baseline tension.
+    \item $\mu$ = Logarithmic scaling factor, accounting for diminishing marginal costs of high $X_{\mathrm{real}}$.
+    \item $X_{\mathrm{norm},t}$ = Normalized productive capacity.
+    \item $X_{\mathrm{real},t}$ = Real productive capacity (million kWh).
+    \item $Gini_t$ = Gini coefficient of income/wealth inequality.
+\end{itemize}
+
+\noindent Interpretation:
+\begin{enumerate}
+    \item The term $a_0$ captures baseline contradictions independent of productivity or inequality.
+    \item $a_1 \cdot X_{\mathrm{norm}}$ reflects the intrinsic increase in contradictions as productivity rises.
+    \item $b_1 \cdot Gini_t$ explicitly links inequality to higher baseline tensions.
+    \item $\mu \cdot \ln(1 + X_{\mathrm{real}})$ introduces a logarithmic saturation, preventing runaway growth at high productivity levels.
+\end{enumerate}
+
+\noindent This baseline serves as the starting point for dynamic updates of 
+$Y_t$, which incorporate shocks, population pressure, and feedback from 
+societal tension ($Z_{\mathrm{eff}}$).
+\subsection{Dynamic Evolution of Social Tension (\texorpdfstring{$Y_t$}{Y\_t})}
+
+The dynamic update of societal tension $Y_t$ determines how contradictions 
+evolve year by year, relative to the baseline $Y_{base}$, productive capacity 
+growth, population-land pressure, and the effect of societal tension 
+($Z_{\mathrm{eff}}$). The formulation distinguishes between the initial year, 
+the second year, and subsequent years.
+
+\paragraph{Initial Year ($t = 0$):}
+\begin{equation}
+Y_0 =
+\begin{cases}
+Y_{first}, & \text{if explicitly provided by user input} \\
+Y_{base,0}, & \text{otherwise}
+\end{cases}
+\end{equation}
+
+\noindent where $Y_{first}$ is a required parameter when available data 
+for $Y_0$ cannot be estimated.
+
+\paragraph{Second Year ($t = 1$):}
+\begin{equation}
+Y_1 = Y_{base,1} + \Delta X_1 \cdot k_Y \cdot \big( 1 + ZImpactK \cdot Z_{\mathrm{eff},1} \big) \cdot \big( 1 + PopPressure_1 \big)
+\end{equation}
+
+\paragraph{Subsequent Years ($t \geq 2$):}
+\begin{equation}\label{sec:Y}
+Y_t = Y_{t-1} + \Delta X_t \cdot k_Y \cdot \big( 1 + ZImpactK \cdot Z_{\mathrm{eff},t} \big) \cdot \big( 1 + PopPressure_t \big)
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $\Delta X_t = X_{\mathrm{real},t} - X_{\mathrm{real},t-1}$ = Change in productive capacity.
+    \item $k_Y$ = Scaling coefficient linking $\Delta X$ to changes in $Y$.
+    \item $ZImpactK$ = Sensitivity coefficient controlling how $Z_{\mathrm{eff}}$ amplifies changes in $Y$.
+    \item $PopPressure_t$ = Population pressure factor (Section~5.7).
+    \item $Y_{base,t}$ = Baseline social tension in year $t$.
+\end{itemize}
+
+\noindent Interpretation:
+\begin{enumerate}
+    \item $Y_t$ increases whenever productivity grows ($\Delta X > 0$), 
+          unless offset by strong technological dividends ($Z_{\mathrm{eff}} < 0$).
+    \item Population pressure multiplies the growth of $Y$, making land scarcity 
+          a destabilizing accelerator of contradictions.
+    \item The recursive definition ensures path dependency: past contradictions 
+          accumulate into future values.
+\end{enumerate}
+
+\noindent This mechanism captures the core intuition of SECM: productivity growth 
+generates wealth but simultaneously breeds contradictions, with land and tension 
+acting as amplifiers.
+\subsection{Societal Carrying Capacity (\texorpdfstring{$Y_{limit}$}{Ylimit})}
+
+The societal carrying capacity $Y_{limit}$ represents the maximum level of 
+contradictions that a society can sustain before systemic crises accumulate. 
+It is a function of productive capacity, military burden, and resilience 
+($\Omega$), with explicit adjustments during productivity decline. 
+
+\paragraph{General Case:}
+\begin{equation}
+Y_{limit,t} =
+\begin{cases}
+X_{\mathrm{norm},t} \cdot (1 - MilitaryRatio_t) \cdot k_{Limit} \cdot (1 + |\Omega_t|), & \Omega_t \leq 1 \\
+\dfrac{X_{\mathrm{norm},t} \cdot (1 - MilitaryRatio_t) \cdot k_{Limit}}{1 + \Omega_t}, & \Omega_t > 1
+\end{cases}
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $X_{\mathrm{norm},t}$ = Normalized productive capacity.
+    \item $MilitaryRatio_t$ = Military expenditure as a fraction of GDP. 
+          Reduces effective carrying capacity by diverting resources.
+    \item $k_{Limit}$ = Scaling factor converting $X_{\mathrm{norm}}$ into 
+          contradiction-carrying potential.
+    \item $\Omega_t$ = Structural resilience index (Section~5.4).
+\end{itemize}
+
+\paragraph{Productivity Decline Adjustment ($\Delta X < 0$):}
+When productive capacity decreases, carrying capacity erodes more quickly 
+than $Y$ itself. A decay multiplier $\beta$ ($YLimitDecayBeta$) is applied:
+
+\begin{equation}
+Y_{limit,t} \; \gets \; \frac{Y_{limit,t}}{ (1 + YLimitDecayBeta) \cdot (1 + |\Delta X_t|) }
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $YLimitDecayBeta > 1$ = Decay acceleration factor, typically in the range $1.2$–$1.5$.
+    \item $\Delta X_t = X_{\mathrm{real},t} - X_{\mathrm{real},t-1}$ = Change in productive capacity.
+\end{itemize}
+
+\noindent Interpretation:
+\begin{enumerate}
+    \item $\Omega_t \leq 1$ (resilient system): carrying capacity grows with resilience.  
+    \item $\Omega_t > 1$ (fragile system): carrying capacity shrinks inversely with resilience.  
+    \item Military spending always reduces $Y_{limit}$ by subtracting available resources.  
+    \item During declines in $X$, the decay adjustment ensures $Y_{limit}$ falls faster than $Y$, 
+          reflecting historical cases where crises intensify during recessions.  
+\end{enumerate}
+\subsection{Crisis Accumulation Pool (\texorpdfstring{$S_t$}{S\_t})}
+
+The crisis accumulation pool, denoted $S_t$, represents the stock of unresolved 
+contradictions that accumulate whenever societal tension exceeds carrying capacity. 
+It serves as the memory of the system, tracking latent instability over time.
+
+\paragraph{Recursive Definition:}
+\begin{equation}
+S_t =
+\begin{cases}
+S_{t-1} + (Y_t - Y_{limit,t}), & Y_t > Y_{limit,t} \\
+S_{t-1} \cdot (1 - SDecayRate), & Y_t \leq Y_{limit,t}
+\end{cases}
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $S_{t-1}$ = Crisis pool stock from the previous year.
+    \item $Y_t$ = Current social tension level.
+    \item $Y_{limit,t}$ = Current societal carrying capacity.
+    \item $SDecayRate$ = Proportional decay rate ($0 < SDecayRate < 1$), 
+          governing how quickly accumulated contradictions dissipate 
+          during periods of relief.
+\end{itemize}
+
+\noindent Interpretation:
+\begin{enumerate}
+    \item When $Y_t > Y_{limit,t}$, the excess contradictions accumulate directly into $S_t$.
+    \item When $Y_t \leq Y_{limit,t}$, the pool decays gradually, reflecting the 
+          slow process of resolving past crises.
+    \item $S_t$ thus functions as a latent instability index, storing the historical 
+          overshoot of societal contradictions beyond sustainable thresholds.
+\end{enumerate}
+\subsection{Collapse Trigger (I\_reset)}
+
+The collapse trigger, denoted $I_{reset}$, is a binary indicator that activates 
+when accumulated contradictions in the crisis pool exceed the carrying capacity. 
+It represents systemic breakdown, resetting societal dynamics.
+
+\paragraph{Definition:}
+\begin{equation}
+I_{reset,t} =
+\begin{cases}
+1, & S_t \geq Y_{limit,t} \\
+0, & S_t < Y_{limit,t}
+\end{cases}
+\end{equation}
+
+\noindent where:
+\begin{itemize}
+    \item $S_t$ = Crisis accumulation pool at time $t$ (Section~5.11).
+    \item $Y_{limit,t}$ = Societal carrying capacity at time $t$ (Section~5.10).
+\end{itemize}
+
+\noindent Interpretation:
+\begin{enumerate}
+    \item $I_{reset,t} = 1$ signals that unresolved contradictions have reached or 
+          surpassed carrying capacity, indicating systemic collapse.
+    \item Once triggered, this may initiate model-specific reset procedures 
+          (e.g., resetting $Y$, reducing $X$, or simulating crisis-induced reforms).
+    \item If $I_{reset,t} = 0$, the system continues evolving under normal dynamics.
+\end{enumerate}
+
+\noindent This binary rule captures the tipping-point nature of societal crises: 
+contradictions may build silently for years in $S_t$, but once the threshold 
+defined by $Y_{limit}$ is crossed, collapse becomes unavoidable.
+
+
+\section{Variable Definitions and Parameters}
 
 \begin{longtable}{p{3cm} p{9cm} p{3cm}}
-\toprule
+\hline
 \textbf{Variable} & \textbf{Description} & \textbf{Unit / Scale} \\
-\midrule
+\hline
 \endfirsthead
-\toprule
+
+\hline
 \textbf{Variable} & \textbf{Description} & \textbf{Unit / Scale} \\
-\midrule
+\hline
 \endhead
 
-\multicolumn{3}{l}{\textit{Core Capacity Metrics}} \\
-$X_{\text{real}}$ & Actual productive capacity, calculated from energy and labor equivalence. & kWh (million) \\
-$X_{\text{norm}}$ & Normalized productive capacity, relative to baseline. & Dimensionless \\
-KWPE & KW Productivity Equivalent, human labor converted to energy-equivalent productivity. & kWh (million) \\
+\multicolumn{3}{l}{\textbf{Core Productive Capacity}} \\
+$X_{\mathrm{real}}$   & Actual productive capacity, derived from primary energy, animal power, and human labor (KWPE). & million kWh \\
+$X_{\mathrm{norm}}$   & Normalized productive capacity, relative to baseline $X_{\mathrm{real},0}$. & Dimensionless \\
+KWPE                  & Kilowatt Productivity Equivalent: human labor converted to energy-equivalent productivity. & million kWh \\
+PrimaryEnergy ($PE$)  & Total primary energy supply. & million kWh \\
+AnimalPower ($AP$)    & Animal-based mechanical power supply. & million kWh \\
+Population            & Total population. & persons \\
+ArableLand            & Total arable land. & hectares \\
 
-\multicolumn{3}{l}{\textit{Innovation Metrics}} \\
-$X_{\text{bonus}}$ & Innovation dividend from STEM share, education, TFP growth, and patent density. & Dimensionless \\
-$X_{\text{bonus,norm}}$ & Normalized innovation dividend. & Dimensionless \\
+\multicolumn{3}{l}{\textbf{Technology and Innovation}} \\
+$X_{\mathrm{bonus}}$  & Technology dividend factor, capturing the impact of STEM, education, TFP, and patent growth. & 0–5 \\
+STEM                  & Share of STEM workforce or education index. & Dimensionless \\
+EduRate               & Education enrollment or attainment rate. & Dimensionless \\
+TFP                   & Total factor productivity index. & Dimensionless \\
+PatDen                & Patent density per capita. & patents / 1000 people \\
 
-\multicolumn{3}{l}{\textit{Social Structure and Vulnerability}} \\
-$Z_c$ & Social complexity index, aggregating inequality, violence, poverty, market dominance, trust, and urbanization. & Dimensionless \\
-$\Omega$ & System vulnerability index, combining financial and structural fragility indicators. & Dimensionless \\
-$Z_{\mathrm{eff}}$ & Net tension driver, combining $Z_c$, innovation, shocks, and drift. & Dimensionless \\
+\multicolumn{3}{l}{\textbf{Societal Tension Metrics}} \\
+$Z_{\mathrm{raw}}$    & Raw social tension before scaling. & Dimensionless \\
+$Z_{\mathrm{scaled}}$ & Scaled social tension (normalized). & Dimensionless \\
+$Z_{\mathrm{eff}}$    & Effective societal contradiction index. & Dimensionless \\
+$Zc$                  & Societal complexity contradiction index, composite of Gini, poverty, violence, etc. & 0–5 \\
+Gini                  & Gini coefficient of inequality. & 0–1 \\
+MurderRate            & Homicide rate. & per 100k pop. \\
+PovertyRate           & Poverty incidence rate. & 0–1 \\
+MCapGDP               & Market capitalization relative to GDP. & Ratio \\
+Trust                 & Social trust index (survey-based). & 0–1 \\
+$S_{popdens}$         & Population density friction factor. & 0–2.5 \\
 
-\multicolumn{3}{l}{\textit{Societal Stress and Capacity}} \\
-$Y_{\text{base}}$ & Baseline societal stress before adjustments. & Dimensionless \\
-$Y$ & Societal stress index after applying drivers and modifiers. & Dimensionless \\
-$Y_{\mathrm{limit}}$ & Carrying capacity limit before instability. & Dimensionless \\
+\multicolumn{3}{l}{\textbf{Resilience and Stability}} \\
+$\Omega$              & Structural resilience index (including shocks). & -5 to 5 \\
+$\Omega_{shock}$      & Exogenous shock to resilience (e.g., disasters). & Dimensionless \\
+Oc                    & Composite baseline resilience (savings, unemployment, debt, LPI). & Dimensionless \\
+SavingsRate           & Gross savings as \% of GDP. & 0–1 \\
+Unemployment          & Unemployment rate. & 0–1 \\
+DebtRate              & Government debt ratio. & 0–1 \\
+LPI                   & Logistics Performance Index (normalized). & 0–10 \\
 
-\multicolumn{3}{l}{\textit{Overload Dynamics}} \\
-$S_t$ & Crisis pool size, cumulative overload beyond $Y_{\mathrm{limit}}$. & Dimensionless \\
-$I_{\mathrm{reset}}$ & Resilience reset index, representing overload reduction due to adaptation. & Dimensionless \\
+\multicolumn{3}{l}{\textbf{Demography and Pressure}} \\
+PopPressure           & Population pressure on land and productivity. & Dimensionless \\
+$KWPE_{pc}$           & Per capita kilowatt productivity equivalent. & kWh / capita \\
+UrbanRate             & Urbanization rate. & 0–1 \\
 
-\multicolumn{3}{l}{\textit{External and Contextual Variables}} \\
-ZShock & Exogenous event intensifying or reducing societal tension. & Dimensionless \\
-OmegaShock & Exogenous event intensifying or reducing system vulnerability. & Dimensionless \\
-PopPressure & Population pressure based on density and available resources. & Dimensionless \\
-MilitaryRatio & Military burden relative to GDP. & \% of GDP \\
-MCapGDP & Market capitalization as a ratio to GDP. & Ratio \\
-Gini & Income or wealth inequality coefficient. & 0--1 \\
-Poverty & Poverty rate. & \% of population \\
-Murder & Intentional homicide rate. & per 100k people \\
-Urbanization & Urban population share. & \% of population \\
-EduRate & Education attainment rate. & \% of population \\
-TFP & Total factor productivity index. & Dimensionless \\
-PatentDensity & Patents per million people. & patents / million \\
-PrimaryEnergy & Total primary energy supply. & kWh (million) \\
-AnimalPower & Energy from animal labor. & kWh (million) \\
-Healthcare & Healthcare coverage rate. & \% of population \\
-Pension & Pension coverage rate. & \% of population \\
-FreeEdu & Free education coverage rate. & \% of population \\
-UnempIns & Unemployment insurance coverage. & \% of population \\
-SocSecIndex & Social security coverage index. & Dimensionless \\
+\multicolumn{3}{l}{\textbf{Contradiction Dynamics}} \\
+$Y_{base}$            & Baseline social tension. & Dimensionless \\
+$Y$                   & Actual societal contradiction level. & Dimensionless \\
+$Y_{limit}$           & Societal carrying capacity (max sustainable contradiction). & Dimensionless \\
+MilitaryRatio         & Military expenditure as share of GDP. & 0–1 \\
+$k_Y$                 & Scaling factor for $Y$ growth. & Dimensionless \\
+$k_{Limit}$           & Scaling factor for carrying capacity. & Dimensionless \\
+$ZImpactK$            & Weight of social tension ($Z$) in $Y$ dynamics. & Dimensionless \\
+$YLimitDecayBeta$     & Decay acceleration factor during negative productivity growth. & Dimensionless \\
 
-\bottomrule
+\multicolumn{3}{l}{\textbf{Crisis and Collapse}} \\
+$S$                   & Crisis accumulation pool. & Dimensionless \\
+$SDecayRate$          & Crisis pool decay rate when $Y \leq Y_{limit}$. & 0–1 \\
+$I_{reset}$           & Collapse trigger indicator (binary). & 0/1 \\
+
+\hline
 \end{longtable}
+
+
 \section{Limitations and Intended Use}
 
 \subsection{Non-Predictive Nature}
-SECM V0.5 ALPHA is designed for analytical exploration rather than deterministic forecasting. Model outputs should be interpreted as structured reflections of the interactions between productive capacity, social complexity, vulnerability, and capacity limits, given a specific set of inputs and parameters. They do not represent certainties about future events.
+SECM V0.5 ALPHA is designed for analytical exploration rather than deterministic forecasting. The model outputs should be interpreted as structured reflections of the interactions between productive capacity, social complexity, vulnerability, and capacity limits, given a specific set of inputs and parameters. They do not represent certainties about future events.
 
 \subsection{Data Dependency and Proxy Requirements}
-The reliability of SECM outputs depends heavily on the quality and representativeness of input data. While default variables are selected for their accessibility and relevance, users are encouraged to replace them with context-specific indicators when better alternatives are available.  
-For historical or pre-statistical periods, proxies may be necessary (e.g., archaeological yield estimates for agricultural productivity, or historical tax records for economic output). Identifying and validating such proxies is the responsibility of the user. The author does not provide such datasets and makes no claims about their accuracy.
+The reliability of SECM outputs depends heavily on the quality and representativeness of the input data. Although default variables are selected for their accessibility and relevance, users are encouraged to replace them with context-specific indicators when better alternatives are available.  
+For historical or anticipatistical periods, proxies may be necessary (e.g., archaeological yield estimates for agricultural productivity, or historical tax records for economic output). Identifying and validating such proxies is the responsibility of the user. The author does not provide such datasets and makes no claims about their accuracy.
 
 \subsection{Societal Overload and Recovery Dynamics}
-The Crisis Pool ($S_t$) and Resilience Reset ($I_{\mathrm{reset}}$) components are included to provide users with a more intuitive view of cumulative societal overload and potential recovery capacity. However, the magnitude of overload a society can tolerate, and the mechanisms by which it recovers, vary greatly across cultures, governance systems, and historical contexts.
+The Crisis Pool ($S_t$) and Resilience Reset ($I_{\mathrm{reset}}$) components are included to provide users with a more intuitive view of the cumulative societal overload and potential recovery capacity. However, the magnitude of overload a society can tolerate and the mechanisms by which it recovers vary greatly between cultures, governance systems, and historical contexts.
+
+\begin{equation}
+I_{\mathrm{reset},t} = \mathbb{I}\{S_t \ge Y_{\mathrm{limit},t}\}
+\label{sec:Ireset}
+\end{equation}
+
 
 The overload decay rate and reset functions in SECM are intentionally generic, serving as conceptual placeholders rather than prescriptive formulas. Users must adapt these elements to their research context, defining appropriate decay rates, reset triggers, and recovery magnitudes based on empirical or historical evidence relevant to the society under study.
 
 \subsection{Time-Agnostic Structure}
-SECM operates in discrete computational steps tied to changes in productive capacity ($X$), not to calendar years. The length of each step is determined solely by the time resolution of the input data. This feature enables flexible application to both modern datasets and historical reconstructions, but it also means that the model cannot directly account for short-term fluctuations within a given input interval.
+SECM operates in discrete computational steps tied to changes in productive capacity ($X$), not to calendar years. The length of each step is determined solely by the time resolution of the input data. This feature enables flexible application to both modern datasets and historical reconstructions, but also means that the model cannot directly account for short-term fluctuations within a given input interval.
 
 \subsection{Development Status}
 This version, V0.5 ALPHA, remains in active development. Formulae, parameters, and variable definitions are subject to refinement as additional testing, validation, and theoretical advancements are incorporated.
 \section{Conclusion}
 
-The Societal Evolution Computational Model (SECM) V0.5 ALPHA represents an original, modular framework for systematically exploring the interactions between productive capacity, social complexity, systemic vulnerability, societal stress, and carrying capacity.  
-Its architecture integrates multiple domains—economic, social, demographic, and structural—into a coherent computational process, enabling both cross-sectional and longitudinal analysis.
+The Societal Evolution Computational Model (SECM) V0.5 ALPHA represents an original modular framework for systematically exploring the interactions between productive capacity, social complexity, systemic vulnerability, societal stress, and carrying capacity.  
+Its architecture integrates multiple domains, including economic, social, demographic, and structural, into a coherent computational process, allowing both cross-sectional and longitudinal analysis.
 
-A key distinguishing feature of SECM is its \textbf{time-agnostic} design, in which computational steps are driven by changes in productive capacity rather than fixed calendar intervals. This allows the model to operate flexibly across modern datasets, historical reconstructions, and counterfactual scenarios, provided that input intervals are consistent.
+A key distinguishing feature of SECM is its \textbf{time-agnostic} design, in which computational steps are driven by changes in productivity capacity rather than fixed calendar intervals. This allows the model to operate flexibly across modern datasets, historical reconstructions, and counterfactual scenarios, provided that the input intervals are consistent.
 
-While SECM provides a detailed and interconnected set of modules—including the Crisis Pool and Resilience Reset mechanisms—it is not a predictive “crystal ball.” The model is intended for hypothesis testing, scenario exploration, and comparative analysis, not for forecasting specific future events.  
+Although SECM provides a detailed and interconnected set of modules, including the Crisis Pool and Resilience Reset mechanisms, it is not a predictive 'crystal ball'. The model is intended for hypothesis testing, scenario exploration, and comparative analysis, not for forecasting specific future events.  
 Its results should be interpreted as structured expressions of the relationships between chosen variables, within the limitations and assumptions of the framework.
 
-Ongoing development will focus on expanding variable options, refining functional forms, and enhancing validation across diverse historical and cultural contexts. The present version should be regarded as an evolving research tool rather than a finalized or definitive model.
+The ongoing development will focus on expanding variable options, refining functional forms, and improving validation in diverse historical and cultural contexts. The present version should be regarded as an evolving research tool rather than a finalized or definitive model.
 \section{Acknowledgments}
 
-The author wishes to acknowledge that the development of SECM V0.5 ALPHA, as well as the preparation of this technical white paper, benefited from the use of artificial intelligence tools for drafting, editing, and structuring content.  
-These tools assisted in improving clarity, ensuring consistent terminology, and generating certain diagrammatic representations, but the conceptual framework, mathematical formulation, and variable selection remain the sole work of the author.
+The author wishes to acknowledge that the development of SECM V0.5 ALPHA, as well as the preparation of this technical white paper, benefited from the use of artificial intelligence tools for the creation, editing, and structuring of content.  
+These tools helped improve clarity, ensure consistent terminology, and generate certain diagrammatic representations, but the conceptual framework, mathematical formulation, and variable selection remain the sole work of the author.
 
-The author also acknowledges the contributions of publicly available statistical databases, prior theoretical research in systems modeling, and the broader academic discourse on societal resilience, complexity, and capacity limits.  
+The author also acknowledges the contributions of publicly available statistical databases, previous theoretical research in systems modeling, and the broader academic discourse on social resilience, complexity, and capacity limits.  
 While specific references are provided in the bibliography, the SECM framework itself is an independent, original synthesis that does not replicate any pre-existing model in its entirety.
 \section{References}
 
 \begin{hangparas}{0.5in}{1}
 
-Meadows, D. H., Meadows, D. L., Randers, J., \& Behrens, W. W. (1972). \textit{The Limits to Growth: A Report for the Club of Rome's Project on the Predicament of Mankind}. Universe Books.
+Meadows, H. H., Meadows, L. L., Randers, J., \& Behrens, W. W. (1972). \textit{The Limits to Growth: A Report for the Club of Rome's Project on the Predicament of Mankind}. Universe Books.
 
 Tainter, J. A. (1988). \textit{The Collapse of Complex Societies}. Cambridge University Press.
 
-Smil, V. (2017). \textit{Energy and Civilization: A History}. The MIT Press.
+Smil, V. (2017). \textit{Energy and Civilization: A history}. The MIT Press.
 
-Romer, P. M. (1990). Endogenous technological change. \textit{Journal of Political Economy, 98}(5, Part 2), S71–S102. https://doi.org/10.1086/261725
+Romer, P.M. (1990). Endogenous technological change. \textit{Journal of Political Economy, 98}(5, Part 2), S71–S102. https://doi.org/10.1086/261725
 
-World Bank. (2023). \textit{World Development Indicators}. Retrieved from https://databank.worldbank.org/source/world-development-indicators
+World Bank. (2023). \textit{World Development Indicators}. Retrieved from \url{https://databank.worldbank.org/source/world-development-indicators}
 
-United Nations Development Programme. (2022). \textit{Human Development Report 2022: Uncertain Times, Unsettled Lives}. Retrieved from https://hdr.undp.org/
+United Nations Development Program. (2022). \textit{Human Development Report 2022: Uncertain Times, Unsettled Lives}. Retrieved from https://hdr.undp.org/
 
 OECD. (2023). \textit{OECD Data}. Retrieved from https://data.oecd.org/
 

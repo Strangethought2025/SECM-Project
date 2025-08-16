@@ -1,69 +1,160 @@
 \documentclass{article}
+\usepackage{amsmath} % 必须的
 \begin{document}
-\section{Mathematical Formulation}
+% SECM V0.5 Alpha - Full Equations (from Chapter 5)
 
-\subsection{Productive Capacity ($X$)}
+% 5.1 Productive Capacity
 \begin{equation}
-X_{\mathrm{real},t} = \max \left( 0, \mathrm{PrimaryEnergy}_t + \mathrm{AnimalPower}_t + \mathrm{KWPE}_t \right)
-\end{equation}
-
-\begin{equation}
-X_{\mathrm{norm},t} = \frac{X_{\mathrm{real},t}}{X_{\mathrm{real},0}}
-\end{equation}
-
-\subsection{Innovation Dividend ($X_{\mathrm{bonus}}$)}
-\begin{equation}
-X_{\mathrm{bonus},t} = \theta \cdot \mathrm{STEMshare}_t \cdot \mathrm{EduRate}_t \cdot (1 + \mathrm{TFP}_t) 
-\cdot \left( 1 + \frac{\mathrm{PatentDensity}_t}{\mathrm{PatentDensity}_{t-1}} \right)
-\cdot \left( 1 + \frac{X_{\mathrm{real},t}}{X_{\mathrm{real},t-1}} \right)^{P}
+X_{\mathrm{real}} = PE + AP + \frac{Population \times 130}{10^6}
 \end{equation}
 
 \begin{equation}
-X_{\mathrm{bonus,norm},t} = \mathrm{clip} \left( \frac{X_{\mathrm{bonus},t}}{X_{\mathrm{real},0}}, 0, +\infty \right)
+X_{\mathrm{norm}} = \frac{X_{\mathrm{real}}}{X_{\mathrm{base}}}
 \end{equation}
 
-\subsection{Social Complexity ($Z_c$)}
+% 5.2 Technology Dividend
 \begin{equation}
-Z_{c,t} = \frac{Gini_t + S_{\mathrm{murder},t} + S_{\mathrm{poverty},t} + \mathrm{MCapGDP}_t + (1 - Trust_t) + Urbanization_t}{n}
-\end{equation}
-
-\begin{equation}
-S_{\mathrm{murder},t} = \frac{\mathrm{MurderRate}_t}{100} \cdot \sqrt{2}
-\end{equation}
-
-\begin{equation}
-S_{\mathrm{poverty},t} = \frac{\mathrm{PovertyRate}_t}{100}
-\end{equation}
-\subsection{System Vulnerability ($\Omega$)}
-\begin{equation}
-\Omega_t = f \left( \mathrm{SavingsRate}_t, \mathrm{DebtRate}_t, \mathrm{UnemploymentRate}_t, \mathrm{LPI}_t, \mathrm{OmegaShock}_t \right)
-\end{equation}
-
-\subsection{Net Tension Driver ($Z_{\mathrm{eff}}$)}
-\begin{equation}
-Z_{\mathrm{eff},t} = g \left( Z_{c,t}, \mathrm{relax}_t, X_{\mathrm{bonus,norm},t}, Z_{\mathrm{shock},t}, \mathrm{DriftTerm} \right)
-\end{equation}
-
-\subsection{Societal Stress Index ($Y$)}
-\begin{equation}
-Y_t = Y_{\mathrm{base},t} + \Delta Y_t
+\begin{aligned}
+X_{\mathrm{bonus},t} &= \theta \cdot STEM_t \cdot EduRate_t \cdot (1 + TFP_t) \\
+&\quad \cdot \left[ 1 + \frac{PatDen_t - PatDen_{t-1}}{PatDen_{t-1}} \right] \\
+&\quad \cdot \left[ 1 + \frac{X_{\mathrm{real},t} - X_{\mathrm{real},t-1}}{X_{\mathrm{real},t-1}} \right]^{P}
+\end{aligned}
 \end{equation}
 
 \begin{equation}
-\Delta Y_t = h \left( X_{\mathrm{norm},t}, Z_{\mathrm{eff},t}, \mathrm{PopPressure}_t, \Gamma_S, \Gamma_X, K_Y \right)
-\end{equation}
-\subsection{Carrying Capacity ($Y_{\mathrm{limit}}$)}
-\begin{equation}
-Y_{\mathrm{limit},t} = X_{\mathrm{norm},t} \cdot k_{\mathrm{limit}} \cdot \Omega_t \cdot \left( 1 + \mathrm{MilitaryRatio}_t \right)
+0 \; \leq \; X_{\mathrm{bonus},t} \; \leq \; 5
 \end{equation}
 
-\subsection{Crisis Pool ($S_t$)}
+% 5.3 Net Societal Tension
 \begin{equation}
-S_t = \max \left( 0, S_{t-1} + \max \left( 0, Y_t - Y_{\mathrm{limit},t} \right) - \lambda_S S_{t-1} \right)
+\begin{aligned}
+Z_{\mathrm{raw},t} &= \mathrm{avg}\Big( ZShock_t,\; -relax_t,\; 
+\gamma_S \cdot Zc_t, \\
+&\quad -\gamma_X \cdot X_{\mathrm{bonus,norm},t},\; Drift_t \Big)
+\end{aligned}
 \end{equation}
 
-\subsection{Resilience Reset ($I_{\mathrm{reset}}$)}
 \begin{equation}
-I_{\mathrm{reset},t} = \phi \left( Y_t, Y_{\mathrm{limit},t}, S_t \right)
+Z_{\mathrm{scaled},t} = \frac{Z_{\mathrm{raw},t}}{Z_{\max}} \cdot Z_{\mathrm{scale}}
 \end{equation}
+
+\begin{equation}
+Z_{\mathrm{eff},t} =
+\begin{cases}
+\;\;\;\;\big( (1 + Z_{\mathrm{scaled},t})^2 - 1 \big), & Z_{\mathrm{scaled},t} \geq 0 \\
+- \big( (1 + |Z_{\mathrm{scaled},t}|)^2 - 1 \big), & Z_{\mathrm{scaled},t} < 0
+\end{cases}
+\end{equation}
+
+% 5.4 Structural Resilience
+\begin{equation}
+\Omega_t = Oc_t + \Omega_{shock,t}
+\end{equation}
+
+\begin{equation}
+Oc_t = \mathrm{avg}\Big( -SavingsRate_t,\;\; \sqrt{2} \cdot Unemployment_t,\;\; 
+DebtRate_t,\;\; -\tfrac{LPI_t}{10} \Big)
+\end{equation}
+
+\begin{equation}
+-5 \; \leq \; \Omega_t \; \leq \; 5
+\end{equation}
+
+% 5.5 Societal Complexity Contradiction Index
+\begin{equation}
+\begin{aligned}
+Zc_t = w_{Zc} \cdot \mathrm{avg}\Big(& Gini_t,\; \sqrt{2} \cdot MurderRate_t,\; 
+\sqrt{2} \cdot PovertyRate_t, \\
+& \min(MCapGDP_t,3),\; (1 - Trust_t),\; S_{popdens,t} \Big)
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+Zc_t \; \leq \; 5
+\end{equation}
+
+% 5.6 Population Density Friction
+\begin{equation}
+S_{popdens,t} = 1 - \frac{1}{UrbanRate_t \cdot \left( \frac{Population_t}{ArableLand_t} \right)}
+\end{equation}
+
+\begin{equation}
+0 \; \leq \; S_{popdens,t} \; \leq \; 2.5
+\end{equation}
+
+% 5.7 Population Pressure
+\begin{equation}
+PopPressure_t =
+\frac{\dfrac{Population_t}{ArableLand_t}}
+{\dfrac{KWPE_{pc,t}}{LandCapLimitCoef}}
+\end{equation}
+
+\begin{equation}
+KWPE_{pc,t} =
+\frac{ \big( PE_t + AP_t + \tfrac{Population_t \times 130}{10^6} \big) }
+{Population_t} \times 10^6
+\end{equation}
+
+% 5.8 Baseline Social Tension
+\begin{equation}
+Y_{base,t} = a_0 + a_1 \cdot X_{\mathrm{norm},t} + b_1 \cdot Gini_t + \mu \cdot \ln(1 + X_{\mathrm{real},t})
+\end{equation}
+
+% 5.9 Dynamic Evolution of Social Tension
+\begin{equation}
+Y_0 =
+\begin{cases}
+Y_{first}, & \text{if explicitly provided} \\
+Y_{base,0}, & \text{otherwise}
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+Y_1 &= Y_{base,1} + \Delta X_1 \cdot k_Y \cdot \big( 1 + ZImpactK \cdot Z_{\mathrm{eff},1} \big) \\
+&\quad \cdot \big( 1 + PopPressure_1 \big)
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+Y_t &= Y_{t-1} + \Delta X_t \cdot k_Y \cdot \big( 1 + ZImpactK \cdot Z_{\mathrm{eff},t} \big) \\
+&\quad \cdot \big( 1 + PopPressure_t \big)
+\end{aligned}
+\end{equation}
+
+% 5.10 Societal Carrying Capacity
+\begin{equation}
+\begin{aligned}
+Y_{limit,t} &=
+\begin{cases}
+X_{\mathrm{norm},t} \cdot (1 - MilitaryRatio_t) \cdot k_{Limit} \cdot (1 + |\Omega_t|), & \Omega_t \leq 1 \\
+\dfrac{X_{\mathrm{norm},t} \cdot (1 - MilitaryRatio_t) \cdot k_{Limit}}{1 + \Omega_t}, & \Omega_t > 1
+\end{cases}
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+Y_{limit,t} \;\gets\; \frac{Y_{limit,t}}{ (1 + YLimitDecayBeta) \cdot (1 + |\Delta X_t|) } 
+\quad \text{if } \Delta X_t < 0
+\end{equation}
+
+% 5.11 Crisis Accumulation Pool
+\begin{equation}
+S_t =
+\begin{cases}
+S_{t-1} + (Y_t - Y_{limit,t}), & Y_t > Y_{limit,t} \\
+S_{t-1} \cdot (1 - SDecayRate), & Y_t \leq Y_{limit,t}
+\end{cases}
+\end{equation}
+
+% 5.12 Collapse Trigger
+\begin{equation}
+I_{reset,t} =
+\begin{cases}
+1, & S_t \geq Y_{limit,t} \\
+0, & S_t < Y_{limit,t}
+\end{cases}
+\end{equation}
+
 \end{document}
