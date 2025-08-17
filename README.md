@@ -7,18 +7,23 @@
 
 > *“Humanity always advances through contradictions and conflicts.”*
 
-The **SECM (Societal Evolution Computational Model)** provides a quantitative framework for analyzing macro-societal development under structural feedback constraints.  
-The V0.5 Alpha release marks the first full-featured build with a **standalone simulator (executable)** and a **complete illustrated user manual**, enabling direct replication of results without programming.
+The **SECM (Societal Evolution Computational Model)** is a quantitative framework designed to **analyze and visualize the contradictions within human societies and the structural limits of their capacity to bear these contradictions**.  
+
+Rather than focusing on short-term economic forecasting, SECM emphasizes long-term systemic feedback: how productive capacity interacts with inequality, stress, and external shocks to generate cycles of stability, crisis, and transformation.  
+
+The **V0.5 Alpha release** marks the first full-featured build with a standalone simulator (executable) and a complete illustrated user manual, enabling direct replication of results without programming.
 
 ---
 
-## 📘 Overview
+📘 **Overview**
 
-SECM captures systemic dynamics through three primary axes:
+SECM captures societal dynamics through three primary axes:
 
 - **X-axis (Productive Capacity):** energy base, infrastructure, KWPE (Kilowatt Productivity Equivalent).  
-- **Y-axis (Social Cost / Tension):** inequality, population–land stress, systemic frictions.  
-- **Z-axis (External Perturbations):** wars, pandemics, exogenous stabilizers/destabilizers.  
+- **Y-axis (Social Cost / Tension):** class opportunity cost, inequality, population–land stress, systemic frictions.  
+- **Z-axis (External Perturbations):** wars, pandemics, exogenous stabilizers or destabilizers.  
+
+Together, these axes describe how societies accumulate stress, when they surpass their contradiction-bearing limit, and how crises or restructurings unfold.
 
 ### What’s New in V0.5 Alpha
 - 🔹 **Standalone Simulator:** packaged `.exe` (requires .NET 8) with UI and Excel-driven modes.  
