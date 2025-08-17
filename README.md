@@ -25,12 +25,26 @@ SECM captures societal dynamics through three primary axes:
 
 Together, these axes describe how societies accumulate stress, when they surpass their contradiction-bearing limit, and how crises or restructurings unfold.
 
-### What’s New in V0.5 Alpha
-- 🔹 **Standalone Simulator:** packaged `.exe` (requires .NET 8) with UI and Excel-driven modes.  
-- 🔹 **Illustrated User Manual:** step-by-step instructions with screenshots.  
-- 🔹 **Locked-parameter multi-nation validation:** one reference calibration applied to four countries.  
-- 🔹 **Extreme stress testing:** robust under horizon truncation and Y-axis perturbations.  
-- 🔹 **Comprehensive documentation:** white paper, validation report, and LaTeX sources.  
+### 🌟 What’s New in V0.5 Alpha
+
+- **Standalone Simulator**  
+  A packaged `.exe` (requires .NET 8) with both UI and Excel-driven modes, allowing direct use without coding.  
+
+- **Illustrated User Manual**  
+  Full step-by-step instructions with screenshots, enabling non-technical users to run and interpret simulations.  
+
+- **Unified-parameter multi-nation validation**  
+  One reference calibration was locked and successfully applied across four countries (USA, Japan, Argentina, Greece), demonstrating cross-national robustness.  
+
+- **Contradiction limit analysis**  
+  Tracks when social tension (Y) surpasses the structural tolerance line (Ylimit), reproducing real-world crises (e.g., dot-com slowdown, global financial crisis, sovereign debt collapse).  
+
+- **Extreme stress testing**  
+  Robust under horizon truncation and radical Y-axis perturbations, producing Pearson correlations ≈ 1.0 across timeframes.  
+
+- **Comprehensive documentation**  
+  Includes the technical white paper, validation report, and LaTeX sources for reproducible research.
+
 
 ---
 
