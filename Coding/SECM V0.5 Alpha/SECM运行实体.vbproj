@@ -33,5 +33,89 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
+<!--
+================================================================================
+ SECM: Societal Evolution Computational Model (Future Directions – Unpublished)
+================================================================================
+
+This comment block records conceptual extensions that were not included in the
+V0.5 Alpha public release, but represent the deeper trajectory of SECM's
+"modeling philosophy." It is intentionally preserved here for future explorers.
+
+1. Mathematical Definition of Socialism and Communism
+   - Socialism: defined as the systemic condition where Class Opportunity Cost (Y)
+     exhibits a long-term declining trajectory as productive capacity (X) grows.
+     In other words, the structural link between X and Y is "cut off" (truncated),
+     such that higher productivity no longer generates proportionally higher
+     opportunity cost. This reflects redistribution and institutional mechanisms
+     that suppress systemic inequality.
+   - Communism: defined as the theoretical limit where Y → 0 as X → ∞,
+     meaning class opportunity cost is mathematically canceled out rather than
+     merely suppressed; productivity sustains without systemic tension.
+     When Y = 0, all social classes are eliminated, and humanity enters a state
+     of maximal freedom.
+   - Formula summary:
+       * Y → 0 as X → ∞
+       * Y = 0 ⇒ No Classes, Maximal Freedom
+
+2. The Great Singularity and Kuznets-type Dynamics
+   - The Great Singularity is analogous to the apex of a Kuznets-type curve:
+       * Before the singularity: dY/dX > 0. As X grows, Y rises.
+       * At the singularity: dY/dX = 0. Y peaks relative to X.
+       * After the singularity: dY/dX < 0. As X continues to grow, Y declines
+         due to structural redistribution and systemic truncation.
+   - End state: lim (X → ∞) Y = 0. This marks the entry into Communism.
+
+3. Post-Singularity Bifurcation Paths
+   - After the Great Singularity, societies may diverge into distinct regimes:
+     a) Socialist Path:
+        - Y enters a long-term declining regime as X continues to grow.
+        - Opportunity cost is structurally suppressed, leading to socialism,
+          with the eventual convergence toward communism.
+     b) Exacerbated Exploitation Path:
+        - With technological growth, the proportion of resources required for
+          survival shrinks relative to overall productivity.
+        - This enlarges the exploitable share of output, potentially making Y
+          persistently high or even renewed in novel forms.
+        - In this scenario, contradictions intensify despite high productivity.
+
+   Historical Mission:
+   - The true role of a "Communist Party" is not determined by self-label,
+     but by the capacity to guide society, post-singularity, onto the
+     socialist path rather than the exploitative one.
+   - Whichever force achieves this, regardless of its name, fulfills the
+     communist role in history.
+
+4. Societal Over-Peak Dynamics
+   - Many subsystems (population growth, land–resource stress, technological
+     bonus) exhibit "over-peak" behavior: rising, reaching saturation, then
+     entering diminishing returns.
+   - Modeling over-peak transitions is crucial for long-horizon simulations.
+   - This explains why certain civilizations collapse even after productivity
+     has reached unprecedented heights.
+
+5. The Great Singularity Conjecture
+   - Hypothesis: A society can only cross the Great Singularity when three
+     fundamental conditions of productive forces are simultaneously fulfilled:
+       1) Energy: breakthrough in nuclear fusion, providing near-limitless energy.
+       2) Brainpower: emergence of weak AI, capable of large-scale cognitive
+          labor substitution but not full AGI.
+       3) Tools: atomic-level disassembly and assembly of resources, enabling
+          universal manufacturing.
+   - All three are required. Missing any one condition results in failure.
+   - Failure mode: productivity (X) declines, while Class Opportunity Cost (Y)
+     also decreases, simulating a temporary collapse/reset.
+   - Societies may then attempt the crossing again after recovery, but the
+     singularity process itself cannot be bypassed, altered, or reversed.
+   - It is a one-way, non-negotiable structural test embedded in the logic
+     of societal evolution.
+
+--------------------------------------------------------------------------------
+ Note:
+ These directions were never formally published alongside SECM V0.5 Alpha.
+ They remain part of the "unlit path" of SECM development, left here as a
+ hidden record for those who choose to look deeper.
+--------------------------------------------------------------------------------
+-->
 
 </Project>
