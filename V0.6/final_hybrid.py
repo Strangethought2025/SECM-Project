@@ -24,6 +24,7 @@ def compute(df,P):
     mcap=df["mcap_gdp"].to_numpy(float)
     gini=df["Gini"].to_numpy(float) if "Gini" in df.columns else np.full(len(df),np.nan)
     patent=df["Patent"].to_numpy(float)
+    debt=df["debt_gdp"].to_numpy(float) if "debt_gdp" in df.columns else np.full(len(df),np.nan)
     n=len(df)
     X=epc*pop/1e6 + pop*130.0/1e6
     Xn=np.maximum(X/X[0],0.1); dX=np.diff(Xn,prepend=Xn[0])
@@ -39,8 +40,10 @@ def compute(df,P):
         pr=patent[t-1] if patent[t-1]>0 else np.nan
         pg[t]=np.clip((patent[t]-patent[t-1])/pr,-1,1) if not np.isnan(pr) else 0
     edu_n=norm(edu)
-    # Zc = 平均合成（防数值乱飞）
-    Zc=np.nanmean(np.vstack([P["wg"]*gini_n, P["wu"]*u_norm, P["wm"]*mur_norm, P["wc"]*cris]),axis=0)
+    debt_n=norm(debt)
+    # Zc = 平均合成（防数值乱飞）—— 所有国家同一套指标
+    Zc=np.nanmean(np.vstack([P["wg"]*gini_n, P["wu"]*u_norm, P["wm"]*mur_norm,
+                             P["wc"]*cris, P["wd"]*debt_n]),axis=0)
     # 科技红利 = 平均(专利增速, 教育)
     bonus=np.maximum(np.nanmean(np.vstack([P["wp"]*mov_avg(pg,3), P["we"]*edu_n]),axis=0), P["ZtechMin"])
     Z=Zc-P["gX"]*bonus
@@ -95,6 +98,7 @@ best=[]
 for _ in range(120):
     P=dict(wg=float(rng.uniform(0.3,1.2)),wu=float(rng.uniform(0.4,1.4)),
            wm=float(rng.uniform(0.2,1.0)),wc=float(rng.uniform(0.3,1.0)),
+           wd=float(rng.uniform(0.2,1.0)),
            wp=float(rng.uniform(0.2,0.8)),we=float(rng.uniform(0.2,0.8)),
            gX=float(rng.uniform(0.5,1.5)),ZtechMin=float(rng.uniform(0.1,0.4)),
            kY=float(rng.uniform(0.8,1.6)),ZI=float(rng.uniform(0.5,1.5)),
