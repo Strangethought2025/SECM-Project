@@ -1,0 +1,86 @@
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\fetch_fixall.py:46: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  df[col] = df[col].combine_first(mapped)
+E:\AI-Personal\SECM-Project\V0.6\tune\Russia.csv unemployment:34->35
+E:\AI-Personal\SECM-Project\V0.6\tune\Turkey.csv EduRate:0->42
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Argentina.csv Gini:0->24
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Brazil.csv Gini:0->23
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Cyprus.csv Population:0->26; GDP:0->26; EduRate:0->24; Military:0->25; Gini:0->20
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Egypt.csv Gini:0->8
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Ghana.csv Gini:0->3
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Greece.csv Population:0->26; Patent:0->22; Military:0->25; Gini:0->23
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Iceland.csv GDP:0->26; Patent:0->22; Military:��WB����; mcap_gdp:��WB����; Gini:0->17
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Ireland.csv Population:0->26; GDP:0->26; Patent:0->6; Military:0->25; Gini:0->23
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Japan.csv Patent:0->22
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Lebanon.csv Gini:0->2
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Mexico.csv Gini:0->14
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Pakistan.csv Gini:0->10
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Portugal.csv Military:0->25; Gini:0->21
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Russia.csv Gini:0->24
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Spain.csv Gini:0->22
+E:\AI-Personal\SECM-Project\V0.6\oos2000\SriLanka.csv Gini:0->6
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Turkey.csv Gini:0->22
+E:\AI-Personal\SECM-Project\V0.6\oos2000\UK.csv Gini:0->22
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Ukraine.csv Gini:0->19
+E:\AI-Personal\SECM-Project\V0.6\oos2000\USA.csv Gini:0->25
+E:\AI-Personal\SECM-Project\V0.6\oos2000\Venezuela.csv Gini:0->6
+
+������ٲ�ȫ����:
+  E:\AI-Personal\SECM-Project\V0.6\oos2000\Iceland.csv: ��ȫ�� ['Military', 'mcap_gdp']

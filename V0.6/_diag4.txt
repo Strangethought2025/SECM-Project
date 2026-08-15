@@ -1,0 +1,74 @@
+E:\AI-Personal\SECM-Project\V0.6\diag4.py:16: RuntimeWarning: All-NaN slice encountered
+  m=np.nanmax(x)
+
+=== Iceland: Y/Yl 比值范围 nan~nan  最大G=nan(2000)
+  Y[0]=0.854 Yl[0]=nan  wel[0]=0.361 debt_n[0]=0.549
+  2000: Y=0.854 Yl=nan G=+nan | u=0.26 cris=0.00 ccris=0.00 npl=1.00 ge=0.58 debt=0.55 Xn=1.00 wel=0.36
+  2004: Y=0.851 Yl=nan G=+nan | u=0.53 cris=0.00 ccris=0.00 npl=1.00 ge=0.60 debt=0.59 Xn=0.99 wel=0.43
+  2007: Y=1.238 Yl=nan G=+nan | u=0.30 cris=0.00 ccris=0.19 npl=1.00 ge=0.63 debt=0.50 Xn=1.47 wel=0.43
+  2008: Y=1.447 Yl=nan G=+nan | u=0.39 cris=0.00 ccris=0.33 npl=1.00 ge=1.00 debt=0.80 Xn=1.71 wel=0.43
+  2009: Y=1.509 Yl=nan G=+nan | u=0.95 cris=0.00 ccris=0.30 npl=1.00 ge=0.82 debt=0.93 Xn=1.77 wel=0.43
+  2010: Y=1.421 Yl=nan G=+nan | u=1.00 cris=0.00 ccris=0.26 npl=1.00 ge=0.74 debt=0.96 Xn=1.68 wel=0.44
+  2011: Y=1.533 Yl=nan G=+nan | u=0.93 cris=0.00 ccris=0.30 npl=1.00 ge=0.76 debt=1.00 Xn=1.80 wel=0.44
+  2012: Y=1.496 Yl=nan G=+nan | u=0.79 cris=0.00 ccris=0.32 npl=1.00 ge=0.73 debt=0.97 Xn=1.76 wel=0.44
+  2013: Y=1.560 Yl=nan G=+nan | u=0.71 cris=0.00 ccris=0.28 npl=1.00 ge=0.68 debt=0.88 Xn=1.83 wel=0.44
+  2014: Y=1.554 Yl=nan G=+nan | u=0.65 cris=0.00 ccris=0.29 npl=1.00 ge=0.68 debt=0.83 Xn=1.82 wel=0.45
+  2015: Y=1.472 Yl=nan G=+nan | u=0.53 cris=0.00 ccris=0.25 npl=1.00 ge=0.63 debt=0.70 Xn=1.74 wel=0.43
+  2019: Y=1.585 Yl=nan G=+nan | u=0.46 cris=0.00 ccris=0.06 npl=0.50 ge=0.61 debt=0.48 Xn=1.87 wel=0.43
+  2020: Y=1.545 Yl=nan G=+nan | u=0.72 cris=0.00 ccris=0.04 npl=0.50 ge=0.72 debt=0.56 Xn=1.83 wel=0.46
+  2022: Y=1.582 Yl=nan G=+nan | u=0.50 cris=0.00 ccris=0.08 npl=0.24 ge=0.65 debt=0.49 Xn=1.88 wel=0.48
+  2025: Y=1.648 Yl=nan G=+nan | u=0.48 cris=0.00 ccris=0.06 npl=0.27 ge=0.64 debt=0.40 Xn=1.95 wel=0.45
+
+=== Ireland: Y/Yl 比值范围 nan~nan  最大G=nan(2000)
+  Y[0]=nan Yl[0]=nan  wel[0]=0.302 debt_n[0]=0.307
+  2000: Y=nan Yl=nan G=+nan | u=0.28 cris=0.00 ccris=0.00 npl=0.02 ge=0.44 debt=0.31 Xn=nan wel=0.30
+  2004: Y=nan Yl=nan G=+nan | u=0.29 cris=0.15 ccris=0.00 npl=0.02 ge=0.48 debt=0.24 Xn=nan wel=0.36
+  2007: Y=nan Yl=nan G=+nan | u=0.32 cris=0.30 ccris=0.00 npl=0.03 ge=0.51 debt=0.20 Xn=nan wel=0.37
+  2008: Y=nan Yl=nan G=+nan | u=0.44 cris=0.85 ccris=0.00 npl=0.09 ge=0.59 debt=0.36 Xn=nan wel=0.39
+  2009: Y=nan Yl=nan G=+nan | u=0.82 cris=0.51 ccris=0.00 npl=0.44 ge=0.71 debt=0.52 Xn=nan wel=0.43
+  2010: Y=nan Yl=nan G=+nan | u=0.94 cris=0.30 ccris=0.21 npl=0.56 ge=1.00 debt=0.73 Xn=nan wel=0.45
+  2011: Y=nan Yl=nan G=+nan | u=0.99 cris=0.18 ccris=0.27 npl=0.72 ge=0.71 debt=0.92 Xn=nan wel=0.47
+  2012: Y=nan Yl=nan G=+nan | u=1.00 cris=0.11 ccris=0.20 npl=0.95 ge=0.64 debt=1.00 Xn=nan wel=0.47
+  2013: Y=nan Yl=nan G=+nan | u=0.89 cris=0.07 ccris=0.19 npl=1.00 ge=0.60 debt=0.99 Xn=nan wel=0.47
+  2014: Y=nan Yl=nan G=+nan | u=0.77 cris=0.27 ccris=0.35 npl=0.92 ge=0.55 debt=0.85 Xn=nan wel=0.45
+  2015: Y=nan Yl=nan G=+nan | u=0.64 cris=0.38 ccris=0.56 npl=0.76 ge=0.43 debt=0.62 Xn=nan wel=0.41
+  2019: Y=nan Yl=nan G=+nan | u=0.32 cris=0.27 ccris=0.26 npl=0.15 ge=0.35 debt=0.47 Xn=nan wel=0.39
+  2020: Y=nan Yl=nan G=+nan | u=0.36 cris=0.16 ccris=0.26 npl=0.15 ge=0.40 debt=0.48 Xn=nan wel=0.40
+  2022: Y=nan Yl=nan G=+nan | u=0.29 cris=0.06 ccris=0.24 npl=0.07 ge=0.31 debt=0.36 Xn=nan wel=0.39
+  2025: Y=nan Yl=nan G=+nan | u=0.30 cris=0.01 ccris=0.09 npl=0.05 ge=0.31 debt=0.34 Xn=nan wel=0.41
+
+=== Cyprus: Y/Yl 比值范围 nan~nan  最大G=nan(2000)
+  Y[0]=nan Yl[0]=nan  wel[0]=0.150 debt_n[0]=0.487
+  2000: Y=nan Yl=nan G=+nan | u=0.29 cris=0.00 ccris=0.00 npl=0.08 ge=0.63 debt=0.49 Xn=nan wel=0.15
+  2004: Y=nan Yl=nan G=+nan | u=0.29 cris=0.00 ccris=0.01 npl=0.08 ge=0.71 debt=0.56 Xn=nan wel=0.15
+  2007: Y=nan Yl=nan G=+nan | u=0.24 cris=0.11 ccris=0.00 npl=0.08 ge=0.71 debt=0.46 Xn=nan wel=0.15
+  2008: Y=nan Yl=nan G=+nan | u=0.23 cris=0.67 ccris=0.00 npl=0.08 ge=0.72 debt=0.38 Xn=nan wel=0.17
+  2009: Y=nan Yl=nan G=+nan | u=0.34 cris=0.40 ccris=0.00 npl=0.09 ge=0.78 debt=0.46 Xn=nan wel=0.18
+  2010: Y=nan Yl=nan G=+nan | u=0.39 cris=0.57 ccris=0.00 npl=0.12 ge=0.77 debt=0.48 Xn=nan wel=0.18
+  2011: Y=nan Yl=nan G=+nan | u=0.49 cris=0.95 ccris=0.00 npl=0.21 ge=0.80 debt=0.56 Xn=nan wel=0.18
+  2012: Y=nan Yl=nan G=+nan | u=0.74 cris=0.80 ccris=0.00 npl=0.38 ge=1.00 debt=0.69 Xn=nan wel=0.18
+  2013: Y=nan Yl=nan G=+nan | u=0.99 cris=0.48 ccris=0.00 npl=0.81 ge=0.85 debt=0.89 Xn=nan wel=0.20
+  2014: Y=nan Yl=nan G=+nan | u=1.00 cris=0.29 ccris=0.01 npl=0.94 ge=0.97 debt=0.95 Xn=nan wel=0.20
+  2015: Y=nan Yl=nan G=+nan | u=0.92 cris=0.39 ccris=0.04 npl=1.00 ge=0.79 debt=0.93 Xn=nan wel=0.19
+  2019: Y=nan Yl=nan G=+nan | u=0.44 cris=0.08 ccris=0.46 npl=0.36 ge=0.73 debt=0.81 Xn=nan wel=0.20
+  2020: Y=nan Yl=nan G=+nan | u=0.48 cris=0.05 ccris=0.28 npl=0.31 ge=0.83 debt=1.00 Xn=nan wel=0.24
+  2022: Y=nan Yl=nan G=+nan | u=0.42 cris=0.02 ccris=0.40 npl=0.16 ge=0.69 debt=0.74 Xn=nan wel=0.23
+  2025: Y=nan Yl=nan G=+nan | u=0.30 cris=0.01 ccris=0.18 npl=0.04 ge=0.73 debt=0.56 Xn=nan wel=0.23
+
+=== Portugal: Y/Yl 比值范围 nan~nan  最大G=nan(2000)
+  Y[0]=0.854 Yl[0]=nan  wel[0]=0.391 debt_n[0]=0.402
+  2000: Y=0.854 Yl=nan G=+nan | u=0.27 cris=0.00 ccris=0.00 npl=0.14 ge=0.78 debt=0.40 Xn=1.00 wel=0.39
+  2004: Y=0.897 Yl=nan G=+nan | u=0.43 cris=0.11 ccris=0.00 npl=0.14 ge=0.85 debt=0.50 Xn=1.05 wel=0.41
+  2007: Y=0.880 Yl=nan G=+nan | u=0.51 cris=0.06 ccris=0.00 npl=0.14 ge=0.82 debt=0.54 Xn=1.03 wel=0.41
+  2008: Y=0.859 Yl=nan G=+nan | u=0.48 cris=0.56 ccris=0.00 npl=0.18 ge=0.85 debt=0.56 Xn=1.00 wel=0.41
+  2009: Y=0.848 Yl=nan G=+nan | u=0.59 cris=0.33 ccris=0.00 npl=0.25 ge=0.91 debt=0.65 Xn=0.99 wel=0.42
+  2010: Y=0.819 Yl=nan G=+nan | u=0.67 cris=0.34 ccris=0.03 npl=0.27 ge=0.93 debt=0.74 Xn=0.96 wel=0.42
+  2011: Y=0.796 Yl=nan G=+nan | u=0.79 cris=0.48 ccris=0.02 npl=0.37 ge=0.94 debt=0.85 Xn=0.93 wel=0.42
+  2012: Y=0.746 Yl=nan G=+nan | u=0.97 cris=0.29 ccris=0.03 npl=0.48 ge=0.93 debt=0.96 Xn=0.88 wel=0.41
+  2013: Y=0.747 Yl=nan G=+nan | u=1.00 cris=0.17 ccris=0.08 npl=0.54 ge=0.96 debt=0.97 Xn=0.88 wel=0.41
+  2014: Y=0.736 Yl=nan G=+nan | u=0.84 cris=0.38 ccris=0.14 npl=0.62 ge=1.00 debt=0.99 Xn=0.87 wel=0.41
+  2015: Y=0.764 Yl=nan G=+nan | u=0.75 cris=0.23 ccris=0.16 npl=1.00 ge=0.93 debt=0.97 Xn=0.90 wel=0.41
+  2019: Y=0.757 Yl=nan G=+nan | u=0.39 cris=0.20 ccris=0.14 npl=0.38 ge=0.81 debt=0.86 Xn=0.89 wel=0.42
+  2020: Y=0.702 Yl=nan G=+nan | u=0.41 cris=0.12 ccris=0.08 npl=0.32 ge=0.94 debt=1.00 Xn=0.83 wel=0.45
+  2022: Y=0.709 Yl=nan G=+nan | u=0.36 cris=0.04 ccris=0.15 npl=0.20 ge=0.83 debt=0.83 Xn=0.84 wel=0.48
+  2025: Y=0.686 Yl=nan G=+nan | u=0.37 cris=0.01 ccris=0.09 npl=0.13 ge=0.78 debt=0.67 Xn=0.81 wel=0.48
