@@ -17,7 +17,7 @@ def evaluate(P, verbose=False):
     th=tt=nofb=0; tdet=[]
     for c,evs in TUNE_EV.items():
         df=pd.read_csv(os.path.join(TUNE,f"{c}.csv"),index_col="Year").ffill().bfill()
-        yrs,Y,Yl=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,evs[0]); G=yf*Y-yls*Yl
+        yrs,Y,Yl,_=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,evs[0]); G=yf*Y-yls*Yl
         hits=[e for e in evs if any(abs(e-y)<=1 for y in yrs[G>0])]
         th+=len(hits); tt+=len(evs)
         pos=np.where(G>0)[0]
@@ -26,7 +26,7 @@ def evaluate(P, verbose=False):
     vh=vt=0; vd=[]
     for name,ev in VAL_EV.items():
         df=pd.read_csv(os.path.join(OOS,f"{name}.csv"),index_col="Year").ffill().bfill()
-        yrs,Y,Yl=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,ev[0]); G=yf*Y-yls*Yl
+        yrs,Y,Yl,_=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,ev[0]); G=yf*Y-yls*Yl
         hits=[e for e in ev if any(abs(e-y)<=1 for y in yrs[G>0])]
         vh+=len(hits); vt+=len(ev)
         pos=np.where(G>0)[0]
@@ -42,7 +42,7 @@ def evaluate(P, verbose=False):
     for folder,EVS in [(TUNE,TUNE_EV),(OOS,VAL_EV)]:
         for name,ev in EVS.items():
             df=pd.read_csv(os.path.join(folder,f"{name}.csv"),index_col="Year").ffill().bfill()
-            yrs,Y,Yl=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,ev[0]); G=yf*Y-yls*Yl
+            yrs,Y,Yl,_=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,ev[0]); G=yf*Y-yls*Yl
             for e in ev:
                 if e in yrs: evG.append(G[np.where(yrs==e)[0][0]])
             for i,y in enumerate(yrs):
@@ -57,9 +57,10 @@ for _ in range(400):
     P=dict(wg=float(rng.uniform(0.3,1.2)),wu=float(rng.uniform(0.4,1.4)),
            wm=float(rng.uniform(0.2,1.0)),wc=float(rng.uniform(0.3,1.0)),
            wcr=float(rng.uniform(0.2,1.0)),wnp=float(rng.uniform(0.2,1.0)),
-           wge=float(rng.uniform(0,0.6)),
+           wge=float(rng.uniform(0,0.6)),wcf=float(rng.uniform(0.2,1.0)),
            wp=float(rng.uniform(0.2,0.8)),we=float(rng.uniform(0.2,0.8)),
            gX=float(rng.uniform(0.5,1.5)),ZtechMin=float(rng.uniform(0.1,0.4)),
+           gZ=float(rng.uniform(0.8,2.5)),
            kY=float(rng.uniform(0.8,1.6)),ZI=float(rng.uniform(0.5,1.5)),
            kZ=float(rng.uniform(0.05,1.0)),
            p=float(rng.uniform(2.0,4.0)),
@@ -115,7 +116,7 @@ def detail(P):
     out={}
     for name,ev in VAL_EV.items():
         df=pd.read_csv(os.path.join(OOS,f"{name}.csv"),index_col="Year").ffill().bfill()
-        yrs,Y,Yl=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,ev[0]); G=yf*Y-yls*Yl
+        yrs,Y,Yl,_=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,ev[0]); G=yf*Y-yls*Yl
         hits=[e for e in ev if any(abs(e-y)<=1 for y in yrs[G>0])]
         out[name]=(len(hits),len(ev),int(np.sum(G>0)))
     return out

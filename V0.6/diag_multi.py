@@ -32,7 +32,7 @@ def global_S(P):
     for folder,EVS in [("tune",TUNE_EV),("oos2000",VAL_EV)]:
         for name,ev in EVS.items():
             df=pd.read_csv(os.path.join(HERE,folder,f"{name}.csv"),index_col="Year").ffill().bfill()
-            yrs,Y,Yl=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,ev[0]); G=yf*Y-yls*Yl
+            yrs,Y,Yl,_=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,ev[0]); G=yf*Y-yls*Yl
             for e in ev:
                 if e in yrs: evG.append(G[np.where(yrs==e)[0][0]])
     return 1.0/float(np.median(evG))
@@ -53,7 +53,7 @@ for name,(folder,first_ev,real) in COUNTRIES.items():
     df=pd.read_csv(os.path.join(HERE,folder,f"{name}.csv"),index_col="Year").ffill().bfill()
     print(f"\n=== {name} ({df.index[0]}-{df.index[-1]}) === 真实史: {real}")
     for tag,P,S in [("A",PA,SA),("B",PB,SB)]:
-        yrs,Y,Yl=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,first_ev); G=yf*Y-yls*Yl; Gd=S*G
+        yrs,Y,Yl,_=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,first_ev); G=yf*Y-yls*Yl; Gd=S*G
         segs=bands_of(yrs,Gd)
         print(f" [{tag}] yf={yf:.2f} yls={yls:.2f} 紧张带段: " +
               ", ".join(f"{a}-{b}{c}" for a,b,c in segs))
@@ -62,6 +62,6 @@ for name,(folder,first_ev,real) in COUNTRIES.items():
               f" | G最高 {yrs[imax]}年Gd={Gd[imax]:+.1f}(Y={Y[imax]:.2f}/Yl={Yl[imax]:.2f})"
               f" | G最低 {yrs[imin]}年Gd={Gd[imin]:+.1f}")
     # 画像B逐5年概览(只看B)
-    yrs,Y,Yl=compute(df,PB); yf,yls=calibrate(yrs,Y,Yl,first_ev); G=yf*Y-yls*Yl; Gd=SB*G
+    yrs,Y,Yl,_=compute(df,PB); yf,yls=calibrate(yrs,Y,Yl,first_ev); G=yf*Y-yls*Yl; Gd=SB*G
     print(f" [B逐年] " + " ".join(
         f"{y}:{Gd[i]:+.1f}" for i,y in enumerate(yrs) if (y%5==0 or abs(Gd[i])>1.5)))

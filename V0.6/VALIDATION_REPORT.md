@@ -18,9 +18,10 @@ SECM V0.6 在 6 国调参集（1980-2025）**25/25 全命中**、14 国样本外
 ```
 X        = 一次能源/人 × 人口/10⁶ + 人口×130/10⁶        （能源+劳动力，不用GDP）
 Zc       = 平均[ wg·基尼, wu·失业, wm·凶杀, wc·股崩,
-                 wcr·信贷崩盘, wnp·坏账率NPL, wge·救济金/政府支出 ]   ← 平均法防乱飞
+                 wcr·信贷崩盘, wnp·坏账率NPL, wge·救济金/政府支出,
+                 wcf·资本外逃(FDI骤降+储备流失) ]               ← 平均法防乱飞; 外逃型危机(马1997/阿1989)信号
 bonus    = max( 平均[ wp·专利增速, we·教育 ], ZtechMin )  ← 科技红利(非零下限)
-Z        = Zc − gX·bonus, 去中心(5年滑均)
+Z        = gZ·(Zc − gX·bonus), 去中心(5年滑均)             ← gZ: Z范围增益, 撑开Z让危机幅度带得起来
 Zeff     = sign(Z)·((1+|Z|)^p − 1), p∈[2,4]可调          ← 幂次放大保符号(尖锐端可锐化)
 Y        = 累加器: Y_t = Y_{t−1} + ΔlnX·kY·(1+ZI·Zeff) + kZ·Zeff − lam·(Y_{t−1}−Y_base)
              ΔlnX = 对数增长(Σ有界=lnXn, 防高速增长国Y失控: 新加坡/马来西亚教训)
@@ -33,6 +34,7 @@ G        = yf·Y − yls·Ylimit    ← 唯一输出, 无量纲, 只看相对位
 危机      = G>0(越线), 与陡峭无关, 幅度=危机大小
 校准      = 逐国仅(yf,yls)对齐第一个历史事件, 其余全预测
 G_disp   = S·G (S≈0.9, 事件年G中位归一为1.0)               ← 游戏显示层
+斜率模块   = 危机大小(游戏) = G·(1+kS·正向上升斜率)          ← 水平管越线, 斜率管幅度: 权衡分治
 语义      = G_disp<0 安全 | 0~1 承压 | >1 社会紧张
 ```
 
@@ -45,6 +47,7 @@ G_disp   = S·G (S≈0.9, 事件年G中位归一为1.0)               ← 游戏
 | 人口/GDP/专利/高等教育/军费/失业(WB)/股市/Gini | 世界银行批量端点(浏览器UA+zip) | SP.POP.TOTL / NY.GDP.MKTP.CD / IP.PAT.RESD / SE.TER.ENRR / MS.MIL.XPND.GD.ZS / SL.UEM.TOTL.ZS / CM.MKT.LCAP.GD.ZS / SI.POV.GINI |
 | 一次能源/人 / 凶杀 / 医疗 | 世界银行 | EG.USE.PCAP.KG.OE / VC.IHR.PSRC.P5 / SH.XPD.CHEX.GD.ZS |
 | 私人信贷/GDP / 银行坏账率 / 政府支出(救济金) | 世界银行 | FS.AST.PRVT.GD.ZS / FB.AST.NPER.ZS / GC.XPN.TOTL.GD.ZS |
+| 资本外逃: FDI净流入/GDP / 组合证券净流入 / 外汇储备 | 世界银行 | BX.KLT.DINV.WD.GD.ZS / BX.PEF.TOTL.CD.WD / FI.RES.TOTL.CD |
 | 政府债务/GDP / 失业(WEO补缺口) | IMF WEO 2024-10 免费下载 | GGXWDG_NGDP / LUR |
 
 > 冰岛无军费(WB无, 无军队→军费=0)；冰岛无股市(WB无, 用信贷崩盘替代)。

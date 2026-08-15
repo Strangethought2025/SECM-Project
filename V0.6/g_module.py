@@ -54,6 +54,18 @@ def sample_severity(rng, G, lo, hi, D=1.0):
     """严重度抽样: G越高越严重; D<1 时整体降档"""
     return int(np.clip(round(1+1.2*G*(0.4+0.6*D)+rng.normal(0,0.6)), lo, hi))
 
+def shock_intensity(Zc):
+    """冲击强度 = 矛盾指标骤变(ΔZc)相对自身波动的σ倍数, 只取正向(恶化).
+    哲学: 冲击是'跳变'不是'水平' —— 从-2跳到0.5(未过线)也触发; 从0挪到0.3的增量冲击小."""
+    dZ=np.diff(Zc,prepend=Zc[0])
+    sd=float(np.nanstd(dZ))
+    if sd<=0: return np.zeros_like(Zc)
+    return np.clip(dZ/sd,0.0,3.0)
+
+def lambda_shock(I, D=1.0):
+    """冲击事件期望数: I=1σ→1.2条, 2σ→2.4条, ≥3σ→3.6条 (×难度D)"""
+    return D*np.clip(I,0.0,3.0)*1.2
+
 if __name__=="__main__":
     import io, sys
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")

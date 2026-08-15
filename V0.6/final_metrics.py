@@ -16,7 +16,7 @@ from secm_model import mov_avg, norm, compute, calibrate
 
 def run_country(folder,name,evs):
     df=pd.read_csv(os.path.join(folder,f"{name}.csv"),index_col="Year").ffill().bfill()
-    yrs,Y,Yl=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,evs[0]); G=yf*Y-yls*Yl
+    yrs,Y,Yl,_=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,evs[0]); G=yf*Y-yls*Yl
     pos=yrs[G>0]
     hits=[e for e in evs if any(abs(e-y)<=1 for y in pos)]
     t=yf*Y/(yls*Yl)          # 紧张度标尺: 相对距离 (哲学: 只看相对位置)
@@ -83,7 +83,7 @@ pairs=[]; per=[]
 for folder,EVS in [(TUNE,TUNE_EV),(OOS,VAL_EV)]:
     for c in EVS:
         df=pd.read_csv(os.path.join(folder,f"{c}.csv"),index_col="Year").ffill().bfill()
-        yrs,Y,Yl=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,EVS[c][0]); G=yf*Y-yls*Yl
+        yrs,Y,Yl,_=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,EVS[c][0]); G=yf*Y-yls*Yl
         mur=df["murder"].to_numpy(float)
         ok=~np.isnan(G)&~np.isnan(mur)
         if ok.sum()>=8:
