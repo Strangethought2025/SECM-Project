@@ -1,0 +1,2 @@
+Singapore {'Population': 46, 'GDP': 46, 'Patent': 32, 'EduRate': 11, 'Military': 45, 'unemployment': 35, 'mcap_gdp': 46, 'Gini': 0, 'energy_pc': 34, 'murder': 33, 'health': 24}
+Malaysia {'Population': 46, 'GDP': 46, 'Patent': 37, 'EduRate': 42, 'Military': 45, 'unemployment': 35, 'mcap_gdp': 45, 'Gini': 14, 'energy_pc': 34, 'murder': 34, 'health': 24}

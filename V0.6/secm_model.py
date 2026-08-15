@@ -25,7 +25,8 @@ def compute(df,P):
     gov_exp=df["gov_exp"].to_numpy(float) if "gov_exp" in df.columns else np.full(len(df),np.nan)
     n=len(df)
     X=epc*pop/1e6 + pop*130.0/1e6
-    Xn=np.maximum(X/X[0],0.1); dX=np.diff(Xn,prepend=Xn[0])
+    Xn=np.maximum(X/X[0],0.1)
+    lnX=np.log(Xn); dlnX=np.diff(lnX,prepend=lnX[0])   # 对数增长: 积分有界(ΣdlnX=lnXn), 防高速增长国Y失控
     gini_n=gini/100; u_norm=norm(unemp); mur_norm=norm(murder)
     mg=np.zeros(n)
     for t in range(1,n):
@@ -63,14 +64,16 @@ def compute(df,P):
     Yl=(Xn*(1-mil))**P["beta"]*(P["w0"]+P["ww"]*welfare)/(1+P["wd"]*debt_n)
     # Y = 累加器（V0.5结构，逐国可对齐）
     # kZ*Zeff: 直接矛盾推力——危机尖峰直接抬Y; lam: 回拉项——Y不无限爬高
-    Y_base=P["a0"]+P["a1"]*Xn+P["mu"]*np.log(1+Xn)
+    # Y_base 随 Xn^beta 增长(与Ylimit同幂): 防高速增长国(新加坡/马来西亚)Y无限甩开Ylimit
+    Y_base=P["a0"]+P["a1"]*(Xn**P["beta"])+P["mu"]*np.log(1+Xn)
     Y=np.zeros(n); Y[0]=Y_base[0]
     for t in range(1,n):
-        Y[t]=Y[t-1]+dX[t]*P["kY"]*(1+P["ZI"]*Zeff[t])+P["kZ"]*Zeff[t]-P["lam"]*(Y[t-1]-Y_base[t])
+        Y[t]=Y[t-1]+dlnX[t]*P["kY"]*(1+P["ZI"]*Zeff[t])+P["kZ"]*Zeff[t]-P["lam"]*(Y[t-1]-Y_base[t])
     return df.index.to_numpy(int), Y, Yl
 
 YF=np.arange(0.5,2.6,0.15); YLS=np.arange(0.5,1.8,0.1)
 def calibrate(years,Y,Yl,first_ev):
+    """逐国校准: (yf,yls)缩放, 首次越线=首事件±1年, 其余全预测."""
     best=None
     for yf in YF:
         for yls in YLS:

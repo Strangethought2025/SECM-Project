@@ -6,6 +6,7 @@
 import pandas as pd, numpy as np, os, io, sys, json, hashlib
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 from secm_model import compute, calibrate
+from g_module import lambda_G, type_probs, sample_severity
 HERE = os.path.dirname(os.path.abspath(__file__))
 def load_P(profile="B"):
     """画像A: 校准+验证满分(可读性~1.1, 事件流平淡); 画像B: 尖峰版(可读性~20x, 危机年事件爆炸, 适合游戏)"""
@@ -20,9 +21,18 @@ VAL_EV = {"UK":[2008,2020],"Spain":[2008,2012,2020],"Portugal":[2011,2020],
     "Ireland":[2008,2010,2020],"Cyprus":[2013,2020],"Iceland":[2008,2020],"Brazil":[2015,2020],
     "Ukraine":[2009,2014,2020,2022],"Venezuela":[2013,2016,2020],"Egypt":[2011,2016,2020],
     "Pakistan":[2008,2019,2022],"SriLanka":[2022],"Ghana":[2022],"Lebanon":[2019,2020]}
+EVENT_EXTRA = {"France":[2005,2015,2018,2023],"Germany":[2003,2015,2020],"Japan":[2008,2011,2020],
+    "Singapore":[1985,1997,2003,2008,2020],"Malaysia":[1985,1997,1998,2008,2018,2020]}
 CITIES = {"UK":["伦敦","曼彻斯特","伯明翰","格拉斯哥","利兹","利物浦","谢菲尔德"],
           "USA":["纽约","洛杉矶","芝加哥","底特律","费城","巴尔的摩"],
           "Spain":["马德里","巴塞罗那","瓦伦西亚","塞维利亚"],
+          "France":["巴黎","马赛","里昂","里尔","南特","斯特拉斯堡"],
+          "Germany":["柏林","汉堡","慕尼黑","科隆","莱比锡","法兰克福"],
+          "Japan":["东京","大阪","名古屋","横滨","福冈"],
+          "Singapore":["新加坡"],
+          "Malaysia":["吉隆坡","槟城","新山","怡保","沙巴"],
+          "Argentina":["布宜诺斯艾利斯","科尔多瓦","罗萨里奥","门多萨"],
+          "Brazil":["圣保罗","里约热内卢","巴西利亚","萨尔瓦多","累西腓"],
           "default":["首都圈","工业城市","港口城市","大学城","北部城镇","卫星城"]}
 SEV_LABEL = {1:"轻微",2:"一般",3:"严重",4:"非常严重",5:"爆发"}
 
@@ -40,20 +50,6 @@ S = global_S(load_P("B"))
 
 def band_of(g): return "安全" if g<0 else ("紧张" if g>1 else "承压")
 
-def expected_events(g):
-    if g<0: return 1.2
-    if g<=1: return 1.5+5.0*g
-    return 6.5+12.0*((g-1)**1.5)
-
-def pick_category(rng, band):
-    cats=[]; ws=[]
-    for c,cfg in LIB.items():
-        if c.startswith("_"): continue
-        w=cfg["权重"].get(band,0.0)
-        if w>0: cats.append(c); ws.append(w)
-    ws=np.array(ws,float); ws/=ws.sum()
-    return cats[int(rng.choice(len(cats),p=ws))]
-
 def fill(tpl, rng, sev, year, city, nums=None):
     def xnum(k):
         if nums is None: lo,hi=5+4*sev,20+9*sev
@@ -66,24 +62,25 @@ def fill(tpl, rng, sev, year, city, nums=None):
     s=s.replace("{city}",city).replace("{year}",str(year))
     return s
 
-def gen_year(rng, year, g, city_list, state):
+def gen_year(rng, year, g, city_list, state, D=1.0):
     band=band_of(g)
-    lam=expected_events(g)
+    lam=lambda_G(g,D)                     # G函数: 事件频率(连续单调, 难度D)
     n=min(int(rng.poisson(lam)),25)
     out=[]; used=set()
+    cats,ws=type_probs(g,LIB,D)           # G函数: 类型分布按严重分数偏移(难度D)
     for _ in range(n):
-        cat=pick_category(rng,band)
-        if cat=="骚乱类":                      # 现实频率≈1次/5年
-            if year-state["last_riot"]<2: continue
-        elif cat=="爆发类":                    # 金融/政治爆发≈1次/10年+
-            if year-state["last_boom"]<5: continue
+        cat=cats[int(rng.choice(len(cats),p=ws))]
+        if cat=="骚乱类":                  # 现实频率≈1次/5年
+            if year-state["last_riot"]<max(2,round(2/D)): continue
+        elif cat=="爆发类":                # 金融/政治爆发≈1次/10年+
+            if year-state["last_boom"]<max(5,round(5/D)): continue
         cfg=LIB[cat]
         cand=[t for t in cfg["模板"] if band in t[3]]
         avail=[t for t in cand if id(t) not in used]
         if not avail: continue
         tpl=avail[int(rng.integers(len(avail)))]; used.add(id(tpl))
         lo,hi=tpl[1],tpl[2]
-        sev=int(np.clip(round(1+1.2*g+rng.normal(0,0.6)),lo,hi))
+        sev=sample_severity(rng,g,lo,hi,D)
         city=str(rng.choice(city_list))
         out.append((cat,sev,fill(tpl[0],rng,sev,year,city,tpl[4] if len(tpl)>4 else None)))
         if cat=="骚乱类": state["last_riot"]=year
@@ -91,22 +88,23 @@ def gen_year(rng, year, g, city_list, state):
     out.sort(key=lambda x:-x[1])
     return out
 
-def run(name, folder="oos2000", show_real=True, max_years=None, profile="B"):
+def run(name, folder="oos2000", show_real=True, max_years=None, profile="B", D=1.0):
     P=load_P(profile); S=global_S(P)
     df=pd.read_csv(os.path.join(HERE,folder,f"{name}.csv"),index_col="Year").ffill().bfill()
-    ev=VAL_EV.get(name,TUNE_EV.get(name,[df.index[-1]]))
+    ev=VAL_EV.get(name) or TUNE_EV.get(name) or EVENT_EXTRA.get(name,[df.index[-1]])
     yrs,Y,Yl=compute(df,P); yf,yls=calibrate(yrs,Y,Yl,ev[0]); G=yf*Y-yls*Yl
     Gd=S*G
+    Gds=pd.Series(Gd).rolling(3,center=True,min_periods=1).mean().to_numpy()  # 3年平滑防带闪烁
     seed=int(hashlib.md5(name.encode()).hexdigest()[:8],16)
     cities=CITIES.get(name,CITIES["default"])
     years=yrs if max_years is None else yrs[-max_years:]
     state={"last_riot":-99,"last_boom":-99}
-    print(f"== {name} 事件流 (画像{profile}, 显示增益S={S:.2f}) ==")
+    print(f"== {name} 事件流 (画像{profile}, S={S:.2f}, 难度D={D}) ==")
     for i,y in enumerate(yrs):
         if y not in years: continue
         rng=np.random.default_rng(seed+y*7919)
-        g=Gd[i]; band=band_of(g)
-        evs=gen_year(rng,int(y),g,cities,state)
+        g=Gds[i]; band=band_of(g)
+        evs=gen_year(rng,int(y),g,cities,state,D)
         print(f"{y} G_disp={g:+.2f} [{band}] 事件{len(evs)}条:")
         for cat,sev,txt in evs:
             print(f"   [{sev}·{cat}] {txt}")
@@ -119,4 +117,5 @@ if __name__=="__main__":
     name=sys.argv[1] if len(sys.argv)>1 else "UK"
     max_years=int(sys.argv[2]) if len(sys.argv)>2 else None
     profile=sys.argv[3] if len(sys.argv)>3 else "B"
-    run(name, max_years=max_years, profile=profile)
+    D=float(sys.argv[4]) if len(sys.argv)>4 else 1.0
+    run(name, max_years=max_years, profile=profile, D=D)

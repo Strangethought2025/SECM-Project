@@ -9,7 +9,8 @@ ALL = {"USA":(TUNE,"USA"),"Argentina":(TUNE,"ARG"),"Mexico":(TUNE,"MEX"),"Turkey
        "UK":(OOS,"GBR"),"Spain":(OOS,"ESP"),"Portugal":(OOS,"PRT"),"Ireland":(OOS,"IRL"),
        "Cyprus":(OOS,"CYP"),"Iceland":(OOS,"ISL"),"Brazil":(OOS,"BRA"),"Ukraine":(OOS,"UKR"),
        "Venezuela":(OOS,"VEN"),"Egypt":(OOS,"EGY"),"Pakistan":(OOS,"PAK"),
-       "SriLanka":(OOS,"LKA"),"Ghana":(OOS,"GHA"),"Lebanon":(OOS,"LBN")}
+       "SriLanka":(OOS,"LKA"),"Ghana":(OOS,"GHA"),"Lebanon":(OOS,"LBN"),
+        "Singapore":(OOS,"SGP"),"Malaysia":(OOS,"MYS")}
 url = "https://www.imf.org/-/media/Files/Publications/WEO/WEO-Database/2024/October/WEOOct2024all.xls"
 r = requests.get(url, timeout=120, headers={"User-Agent":"Mozilla/5.0"})
 txt = r.content.decode("utf-16")

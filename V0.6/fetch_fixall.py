@@ -7,7 +7,8 @@ DIRS = [r"E:\AI-Personal\SECM-Project\V0.6\tune",
 IND = {"Population":"SP.POP.TOTL","GDP":"NY.GDP.MKTP.CD","Patent":"IP.PAT.RESD",
        "EduRate":"SE.TER.ENRR","Military":"MS.MIL.XPND.GD.ZS",
        "unemployment":"SL.UEM.TOTL.ZS","mcap_gdp":"CM.MKT.LCAP.GD.ZS",
-       "Gini":"SI.POV.GINI"}
+       "Gini":"SI.POV.GINI","energy_pc":"EG.USE.PCAP.KG.OE",
+       "murder":"VC.IHR.PSRC.P5","health":"SH.XPD.CHEX.GD.ZS"}
 MAP = {"usa":"United States","uk":"United Kingdom","srilanka":"Sri Lanka",
        "venezuela":"Venezuela, RB","russia":"Russian Federation",
        "egypt":"Egypt, Arab Rep.","lebanon":"Lebanon","korea":"Korea, Rep.",

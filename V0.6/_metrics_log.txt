@@ -29,30 +29,30 @@
 验证集: 事件召回=33/33=100% | 年级精确度=95/364=26% (真阳年/越线年) | 危机段=14 命中段=14 误报段=0
 
 == 紧张度标尺 (G_disp=S·G, S=1/事件年G中位数, G_disp>1=社会紧张) ==
-  显示增益 S=0.89 (使事件年G中位数=1.0)
-  事件年: G中位=1.12 → G_disp中位=1.00 | G_disp>1(紧张)的事件年: 29/58
-  非事件年: G中位=1.02 → G_disp>1(紧张)的非事件年: 196/473 = 41%
+  显示增益 S=0.90 (使事件年G中位数=1.0)
+  事件年: G中位=1.11 → G_disp中位=1.00 | G_disp>1(紧张)的事件年: 29/58
+  非事件年: G中位=1.01 → G_disp>1(紧张)的非事件年: 193/473 = 41%
   语义: G_disp<0 安全(线下) | 0~1 承压 | >1 社会紧张
 
 == 幅度相关: G vs 凶杀率 (Pearson) ==
-  汇总 r=-0.066 (n=640)
-  USA        r=-0.92
-  Argentina  r=-0.83
-  Mexico     r=+0.30
-  Turkey     r=-0.71
-  Russia     r=-0.33
-  Greece     r=+0.35
-  UK         r=+0.62
-  Spain      r=+0.55
+  汇总 r=-0.056 (n=640)
+  USA        r=-0.93
+  Argentina  r=-0.80
+  Mexico     r=+0.27
+  Turkey     r=-0.58
+  Russia     r=-0.38
+  Greece     r=+0.37
+  UK         r=+0.59
+  Spain      r=+0.54
   Portugal   r=+0.70
-  Ireland    r=+0.40
-  Cyprus     r=+0.15
-  Iceland    r=-0.27
-  Brazil     r=-0.40
-  Ukraine    r=+0.71
+  Ireland    r=+0.37
+  Cyprus     r=+0.16
+  Iceland    r=-0.32
+  Brazil     r=-0.38
+  Ukraine    r=+0.67
   Venezuela  r=+0.80
-  Egypt      r=+0.40
-  Pakistan   r=-0.71
+  Egypt      r=+0.46
+  Pakistan   r=-0.68
   SriLanka   r=-0.68
-  Ghana      r=-0.19
-  Lebanon    r=+0.22
+  Ghana      r=-0.18
+  Lebanon    r=+0.21
